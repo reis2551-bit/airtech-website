@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AirTech — Proposta de Website 2024</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════
+   TOKENS
+═══════════════════════════════════ */
+:root{
+  --primary:   #0369A1;
+  --accent:    #0EA5E9;
+  --navy:      #0C1A2E;
+  --daikin:    #0097E0;
+  --green:     #059669;
+  --amber:     #F59E0B;
+  --body:      #374151;
+  --muted:     #64748B;
+  --border:    #E2E8F0;
+  --bg:        #FFFFFF;
+  --bg2:       #F8FAFC;
+  --bg3:       #F1F5F9;
+}
+
+/* ═══════════════════════════════════
+   RESET + BASE
+═══════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:14px}
+body{
+  font-family:'Inter',sans-serif;
+  background:#E8EDF3;
+  color:var(--body);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.6;
+}
+
+/* ═══════════════════════════════════
+   PAGE (A4 SHEETS)
+═══════════════════════════════════ */
+.page{
+  width:210mm;
+  min-height:297mm;
+  margin:0 auto 20px;
+  background:#fff;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 4px 32px rgba(0,0,0,.12);
+  page-break-after:always;
+}
+.page:last-child{page-break-after:auto}
+
+/* page number */
+.pg-num{
+  position:absolute;
+  bottom:14mm;right:14mm;
+  font-size:10px;font-weight:500;
+  color:rgba(0,0,0,.2);
+  letter-spacing:.5px;
+}
+/* top accent line */
+.accent-bar{
+  height:4px;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+}
+
+/* ═══════════════════════════════════
+   COVER PAGE
+═══════════════════════════════════ */
+.cover{
+  background:var(--navy);
+  min-height:297mm;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  padding:16mm;
+}
+.cover-top{display:flex;align-items:center;justify-content:space-between}
+.cover-logo{display:flex;align-items:center;gap:10px}
+.cover-logo-text{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.cover-logo-text span{color:var(--accent)}
+.cover-badge{
+  font-size:10px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+  border:1px solid rgba(255,255,255,.1);
+  padding:6px 14px;border-radius:20px;
+}
+.cover-center{flex:1;display:flex;flex-direction:column;justify-content:center;padding:20mm 0}
+.cover-label{
+  font-size:11px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--accent);
+  margin-bottom:20px;
+}
+.cover-title{
+  font-size:52px;font-weight:900;
+  color:#fff;line-height:1.05;
+  letter-spacing:-2.5px;
+  margin-bottom:24px;
+}
+.cover-title em{
+  color:var(--accent);font-style:normal;
+}
+.cover-sub{
+  font-size:16px;font-weight:400;
+  color:rgba(255,255,255,.55);
+  line-height:1.7;max-width:420px;
+  margin-bottom:48px;
+}
+.cover-tags{display:flex;flex-wrap:wrap;gap:10px}
+.tag{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.65);
+  font-size:11px;font-weight:500;
+  padding:6px 14px;border-radius:6px;
+}
+.cover-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:12mm;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.cover-client{font-size:12px;color:rgba(255,255,255,.3)}
+.cover-client strong{display:block;font-size:14px;color:rgba(255,255,255,.7);font-weight:600;margin-top:2px}
+.cover-date{font-size:12px;color:rgba(255,255,255,.25);text-align:right}
+.cover-date strong{display:block;font-size:14px;color:rgba(255,255,255,.6);margin-top:2px}
+
+/* ═══════════════════════════════════
+   SECTION HEADERS
+═══════════════════════════════════ */
+.section-header{padding:10mm 14mm 6mm}
+.sec-label{
+  font-size:10px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--primary);
+  margin-bottom:6px;
+}
+.sec-title{
+  font-size:28px;font-weight:800;
+  letter-spacing:-1px;color:var(--navy);
+  line-height:1.1;
+}
+.sec-desc{
+  font-size:14px;color:var(--muted);
+  margin-top:8px;line-height:1.65;max-width:520px;
+}
+.pad{padding:0 14mm}
+.pad-b{padding-bottom:10mm}
+
+/* ═══════════════════════════════════
+   OVERVIEW PAGE
+═══════════════════════════════════ */
+.kpi-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  margin:0 14mm;
+}
+.kpi{
+  background:#fff;padding:18px 16px;text-align:center;
+}
+.kpi-num{
+  font-size:28px;font-weight:800;letter-spacing:-1.5px;
+  color:var(--navy);line-height:1;
+}
+.kpi-num em{color:var(--primary);font-style:normal}
+.kpi-label{font-size:11px;color:var(--muted);margin-top:4px;font-weight:500}
+
+.overview-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin:12px 14mm 0;
+}
+.overview-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:12px;padding:18px;
+}
+.ov-icon{font-size:20px;margin-bottom:8px}
+.ov-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.ov-text{font-size:12px;color:var(--muted);line-height:1.6}
+.ov-list{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.ov-list li{
+  display:flex;align-items:flex-start;gap:7px;
+  font-size:12px;color:var(--body);
+}
+.ov-list li::before{
+  content:'✓';color:var(--green);font-weight:700;
+  font-size:10px;flex-shrink:0;margin-top:1px;
+}
+
+/* ═══════════════════════════════════
+   BRAND / IDENTITY PAGE
+═══════════════════════════════════ */
+.brand-section{padding:0 14mm 10mm}
+.brand-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+
+.color-palette{display:flex;gap:8px;margin-bottom:14px}
+.swatch{
+  flex:1;border-radius:10px;overflow:hidden;
+  border:1px solid var(--border);
+}
+.swatch-color{height:48px}
+.swatch-info{padding:8px 10px;background:#fff}
+.swatch-name{font-size:11px;font-weight:700;color:var(--navy)}
+.swatch-hex{font-size:10px;color:var(--muted);font-weight:400}
+.swatch-use{font-size:10px;color:var(--muted)}
+
+.type-scale{display:flex;flex-direction:column;gap:8px}
+.type-row{
+  background:var(--bg2);border-radius:8px;padding:10px 14px;
+  border:1px solid var(--border);
+  display:flex;align-items:baseline;justify-content:space-between;
+}
+.type-sample{color:var(--navy);font-weight:800;letter-spacing:-.5px}
+.type-meta{font-size:10px;color:var(--muted);text-align:right;line-height:1.5}
+
+/* ═══════════════════════════════════
+   PAGES OVERVIEW
+═══════════════════════════════════ */
+.pages-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;padding:0 14mm 10mm;
+}
+.page-card{
+  border:1.5px solid var(--border);border-radius:10px;
+  overflow:hidden;background:#fff;
+}
+.page-card-top{
+  height:60px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+}
+.page-card-body{padding:10px 12px}
+.page-card-name{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.page-card-desc{font-size:10px;color:var(--muted);line-height:1.5}
+
+/* ═══════════════════════════════════
+   HERO MOCKUP
+═══════════════════════════════════ */
+.hero-mockup{
+  margin:0 14mm;border-radius:14px;overflow:hidden;
+  border:1.5px solid var(--border);
+  box-shadow:0 8px 32px rgba(0,0,0,.08);
+}
+.hero-mock-bar{
+  background:#f1f3f4;border-bottom:1px solid var(--border);
+  padding:8px 14px;display:flex;align-items:center;gap:6px;
+}
+.mock-dot{width:8px;height:8px;border-radius:50%}
+.mock-url{
+  flex:1;background:#fff;border-radius:4px;
+  border:1px solid var(--border);padding:4px 10px;
+  font-size:10px;color:var(--muted);margin:0 8px;
+}
+.hero-mock-img{
+  height:160px;
+  background:linear-gradient(135deg,#0C1A2E 0%,#0369A1 50%,#0EA5E9 100%);
+  position:relative;display:flex;align-items:center;
+  padding:24px 28px;
+}
+.hero-mock-overlay{
+  position:absolute;inset:0;
+  background:rgba(12,26,46,.55);
+}
+.hero-mock-content{position:relative;z-index:1;color:#fff;max-width:60%}
+.hero-mock-badge{
+  display:inline-block;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.2);
+  font-size:9px;font-weight:600;
+  padding:3px 10px;border-radius:20px;
+  margin-bottom:8px;letter-spacing:.5px;
+}
+.hero-mock-h1{font-size:18px;font-weight:800;letter-spacing:-.5px;line-height:1.15;margin-bottom:8px}
+.hero-mock-sub{font-size:10px;color:rgba(255,255,255,.7);line-height:1.5;margin-bottom:12px}
+.hero-mock-btns{display:flex;gap:7px}
+.hero-mock-btn1{
+  background:var(--accent);color:#fff;
+  font-size:9px;font-weight:600;
+  padding:6px 14px;border-radius:6px;
+}
+.hero-mock-btn2{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.25);
+  color:#fff;font-size:9px;font-weight:500;
+  padding:6px 14px;border-radius:6px;
+}
+.hero-mock-slider-dots{
+  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  display:flex;gap:5px;
+}
+.mock-sdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4)}
+.mock-sdot.active{background:#fff;width:18px;border-radius:3px}
+
+/* ═══════════════════════════════════
+   SLIDER DETAIL
+═══════════════════════════════════ */
+.slides-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;margin:10px 14mm 0;
+}
+.slide-card{
+  border-radius:10px;overflow:hidden;
+  border:1.5px solid var(--border);
+}
+.slide-card-img{
+  height:72px;background-size:cover;background-position:center;
+  position:relative;
+}
+.slide-card-overlay{
+  position:absolute;inset:0;
+  background:rgba(12,26,46,.5);
+  display:flex;align-items:center;justify-content:center;
+}
+.slide-card-num{
+  width:24px;height:24px;border-radius:50%;
+  background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);
+  font-size:11px;font-weight:700;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.slide-card-body{padding:10px 12px}
+.slide-card-title{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.slide-card-desc{font-size:10px;color:var(--muted);line-height:1.5}
+.slide-card-tag{
+  display:inline-block;
+  background:var(--bg2);border:1px solid var(--border);
+  font-size:9px;font-weight:600;color:var(--primary);
+  padding:2px 8px;border-radius:4px;margin-top:6px;
+}
+
+/* ═══════════════════════════════════
+   SERVICES MOCKUP
+═══════════════════════════════════ */
+.services-mock{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;padding:0 14mm 10mm;
+}
+.svc-card{
+  border:1.5px solid var(--border);border-radius:12px;
+  overflow:hidden;background:#fff;
+}
+.svc-img{
+  height:72px;background-size:cover;background-position:center;
+}
+.svc-body{padding:12px 14px}
+.svc-icon{font-size:18px;margin-bottom:6px}
+.svc-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.svc-desc{font-size:11px;color:var(--muted);line-height:1.55;margin-bottom:8px}
+.svc-price{
+  display:inline-block;
+  background:var(--bg2);border:1px solid var(--border);
+  font-size:10px;font-weight:700;color:var(--primary);
+  padding:3px 10px;border-radius:5px;
+}
+
+/* ═══════════════════════════════════
+   BRANDS MOCKUP
+═══════════════════════════════════ */
+.brands-section{padding:0 14mm 10mm}
+.brands-header{
+  background:var(--navy);border-radius:12px;
+  padding:18px 22px;margin-bottom:12px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brands-header-left .bl-label{
+  font-size:10px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:6px;
+}
+.brands-header-left .bl-title{
+  font-size:20px;font-weight:800;color:#fff;letter-spacing:-.5px;
+}
+.brands-header-left .bl-sub{
+  font-size:12px;color:rgba(255,255,255,.45);margin-top:4px;
+}
+.cert-badge{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:10px 16px;text-align:center;
+}
+.cert-badge .cb-icon{font-size:20px;margin-bottom:4px}
+.cert-badge .cb-text{font-size:10px;color:rgba(255,255,255,.5);font-weight:500}
+
+.brands-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.brand-card{
+  border-radius:12px;overflow:hidden;
+  border:2px solid var(--border);
+}
+.brand-card-daikin{border-color:rgba(0,151,224,.25)}
+.brand-card-toyotomi{border-color:rgba(255,107,53,.2)}
+
+.brand-header-daikin{
+  background:#0097E0;
+  padding:16px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand-header-toyotomi{
+  background:linear-gradient(135deg,#FF6B35,#F7931E,#FFD700,#00A651,#0065BD);
+  padding:16px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand-logo-name{
+  font-size:22px;font-weight:900;color:#fff;
+  letter-spacing:-1px;text-transform:uppercase;
+}
+.brand-logo-tagline{font-size:9px;color:rgba(255,255,255,.7);font-weight:400;margin-top:2px;letter-spacing:.5px}
+.brand-cert-pill{
+  background:rgba(255,255,255,.2);
+  border:1px solid rgba(255,255,255,.3);
+  font-size:9px;font-weight:600;color:#fff;
+  padding:4px 10px;border-radius:20px;letter-spacing:.3px;
+}
+.brand-body{padding:14px 18px;background:#fff}
+.brand-about{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.brand-specs{display:flex;gap:8px;flex-wrap:wrap}
+.bspec{
+  background:var(--bg2);border:1px solid var(--border);
+  font-size:9px;font-weight:600;color:var(--navy);
+  padding:3px 9px;border-radius:5px;
+}
+
+/* ═══════════════════════════════════
+   GOOGLE RATING MOCKUP
+═══════════════════════════════════ */
+.rating-page-content{padding:0 14mm 10mm}
+.google-widget{
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:16px;padding:32px;text-align:center;
+  max-width:380px;margin:0 auto 20px;
+  box-shadow:0 4px 24px rgba(0,0,0,.07);
+}
+.g-logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
+.g-icon{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#4285F4,#34A853,#FBBC05,#EA4335);
+  display:flex;align-items:center;justify-content:center;
+}
+.g-icon span{font-size:18px;font-weight:900;color:#fff;font-family:'Arial Black',sans-serif}
+.g-business-label{font-size:12px;font-weight:600;color:var(--navy)}
+.g-business-sub{font-size:10px;color:var(--muted)}
+.g-score{font-size:68px;font-weight:900;letter-spacing:-4px;color:var(--navy);line-height:1;margin-bottom:8px}
+.g-stars{color:#FBBC05;font-size:28px;letter-spacing:3px;margin-bottom:8px}
+.g-count{font-size:13px;color:var(--muted)}
+.g-count a{color:var(--primary);text-decoration:underline}
+.google-note{
+  text-align:center;font-size:11px;color:var(--muted);
+  max-width:380px;margin:0 auto 20px;line-height:1.6;
+}
+
+.trust-row{display:flex;justify-content:center;gap:12px;margin-top:0}
+.trust-badge{
+  background:var(--bg2);border:1.5px solid var(--border);
+  border-radius:10px;padding:12px 16px;text-align:center;min-width:90px;
+}
+.tb-icon{font-size:20px;margin-bottom:4px}
+.tb-value{font-size:15px;font-weight:800;color:var(--navy);letter-spacing:-.5px}
+.tb-label{font-size:9px;color:var(--muted);font-weight:500;margin-top:1px}
+
+/* ═══════════════════════════════════
+   FORM MOCKUP
+═══════════════════════════════════ */
+.form-mockup{
+  background:var(--bg2);border:1.5px solid var(--border);
+  border-radius:14px;padding:20px;margin:0 14mm 10mm;
+}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.form-field{display:flex;flex-direction:column;gap:4px}
+.form-label{font-size:10px;font-weight:600;color:var(--navy)}
+.form-input{
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:7px;padding:8px 10px;
+  font-size:11px;color:var(--muted);
+}
+.form-select{font-size:11px;color:var(--primary);font-weight:600}
+.form-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.form-privacy{font-size:10px;color:var(--muted)}
+.form-submit{
+  background:var(--primary);color:#fff;
+  font-size:11px;font-weight:700;
+  padding:10px 24px;border-radius:8px;
+}
+
+/* ═══════════════════════════════════
+   TECH STACK PAGE
+═══════════════════════════════════ */
+.tech-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;padding:0 14mm 10mm;
+}
+.tech-card{
+  background:var(--bg2);border:1.5px solid var(--border);
+  border-radius:12px;padding:16px 18px;
+}
+.tech-icon{font-size:20px;margin-bottom:8px}
+.tech-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.tech-desc{font-size:11px;color:var(--muted);line-height:1.55}
+.tech-tag{
+  display:inline-block;margin-top:8px;
+  background:var(--primary);color:#fff;
+  font-size:9px;font-weight:600;
+  padding:2px 8px;border-radius:4px;
+}
+
+.timeline{padding:0 14mm;margin-bottom:10mm}
+.tl-item{
+  display:flex;gap:16px;padding:12px 0;
+  border-bottom:1px solid var(--border);
+}
+.tl-item:last-child{border:none}
+.tl-dot{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--primary);color:#fff;
+  font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.tl-content{}
+.tl-phase{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.tl-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px}
+.tl-desc{font-size:11px;color:var(--muted);line-height:1.55}
+
+/* ═══════════════════════════════════
+   RESPONSIVE (SCREEN ONLY)
+═══════════════════════════════════ */
+@media screen and (max-width:240mm){
+  .page{width:100%;min-height:auto;margin-bottom:2px;border-radius:0}
+}
+
+/* ═══════════════════════════════════
+   PRINT
+═══════════════════════════════════ */
+@media print{
+  body{background:#fff}
+  .page{
+    margin:0;box-shadow:none;
+    width:210mm;min-height:297mm;
+    page-break-after:always;
+  }
+  .page:last-child{page-break-after:auto}
+}
+
+/* ═══════════════════════════════════
+   PRINT BTN (screen only)
+═══════════════════════════════════ */
+.print-bar{
+  width:210mm;margin:20px auto 0;
+  display:flex;justify-content:flex-end;gap:10px;
+}
+@media print{.print-bar{display:none}}
+.print-btn{
+  background:var(--navy);color:#fff;
+  font-family:'Inter',sans-serif;
+  font-size:13px;font-weight:600;
+  padding:10px 22px;border-radius:8px;
+  border:none;cursor:pointer;
+  display:flex;align-items:center;gap:7px;
+  transition:background .15s;
+}
+.print-btn:hover{background:var(--primary)}
+</style>
+</head>
+<body>
+
+<!-- PRINT BUTTON -->
+<div class="print-bar">
+  <button class="print-btn" onclick="window.print()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Exportar PDF
+  </button>
+</div>
+
+<!-- ══════════════════════════════════════
+     PÁG 0 — CAPA
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-top">
+      <div class="cover-logo">
+        <svg width="30" height="30" viewBox="0 0 100 100">
+          <path fill="#0EA5E9" d="M43.3 5.5l-2.2 8.3a33.4 33.4 0 00-8.1 3.4l-7.8-3.8-9.4 9.4 3.8 7.8a33.4 33.4 0 00-3.4 8.1L8 40.9v13.2l8.3 2.2a33.4 33.4 0 003.4 8.1l-3.8 7.8 9.4 9.4 7.8-3.8a33.4 33.4 0 008.1 3.4l2.2 8.3h13.2l2.2-8.3a33.4 33.4 0 008.1-3.4l7.8 3.8 9.4-9.4-3.8-7.8a33.4 33.4 0 003.4-8.1L92 54V40.9l-8.3-2.2a33.4 33.4 0 00-3.4-8.1l3.8-7.8-9.4-9.4-7.8 3.8a33.4 33.4 0 00-8.1-3.4L56.7 5.5H43.3zM50 34a16 16 0 110 32 16 16 0 010-32z"/>
+        </svg>
+        <span class="cover-logo-text">Air<span>Tech</span></span>
+      </div>
+      <span class="cover-badge">Proposta de Website · 2024</span>
+    </div>
+
+    <div class="cover-center">
+      <p class="cover-label">Proposta de Presença Digital</p>
+      <h1 class="cover-title">Website<br><em>AirTech</em><br>2024</h1>
+      <p class="cover-sub">
+        Proposta de redesign completo do website institucional da AirTech —
+        especialistas em instalação, manutenção e reparação de ar condicionado
+        na Zona Centro de Portugal.
+      </p>
+      <div class="cover-tags">
+        <span class="tag">Website Institucional</span>
+        <span class="tag">Multi-página SPA</span>
+        <span class="tag">Mobile First</span>
+        <span class="tag">Parceiros Daikin & Toyotomi</span>
+        <span class="tag">Lead Generation</span>
+        <span class="tag">Formulário de Orçamento</span>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-client">
+        <span>Cliente</span>
+        <strong>AirTech — Ar Condicionado</strong>
+      </div>
+      <div class="cover-date">
+        <span>Data</span>
+        <strong>Abril 2024</strong>
+      </div>
+    </div>
+  </div>
+  <span class="pg-num"></span>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PÁG 1 — VISÃO GERAL
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="section-header">
+    <p class="sec-label">01 — Visão Geral</p>
+    <h2 class="sec-title">O Projecto em Números</h2>
+    <p class="sec-desc">Website completo, sem frameworks externas, carregamento ultrarrápido e optimizado para conversão de leads.</p>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-num">9<em>+</em></div>
+      <div class="kpi-label">Páginas distintas</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">3</div>
+      <div class="kpi-label">Slides no Hero</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num"><em>&lt;</em>1s</div>
+      <div class="kpi-label">Tempo de carregamento</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">100<em>%</em></div>
+      <div class="kpi-label">HTML / CSS / JS puro</div>
+    </div>
+  </div>
+
+  <div class="overview-grid">
+    <div class="overview-card">
+      <div class="ov-icon">📄</div>
+      <div class="ov-title">Páginas incluídas</div>
+      <div class="ov-text">Navegação por hash sem recarregar a página.</div>
+      <ul class="ov-list">
+        <li>Início (com Hero Slider)</li>
+        <li>Sobre Nós — história AirTech 2024</li>
+        <li>Serviços — visão geral</li>
+        <li>Instalação, Manutenção, Reparação</li>
+        <li>Avaliações — Google Rating</li>
+        <li>Contactos + Mapa</li>
+        <li>Pedir Orçamento — formulário</li>
+      </ul>
+    </div>
+    <div class="overview-card">
+      <div class="ov-icon">🎯</div>
+      <div class="ov-title">Objectivos de negócio</div>
+      <div class="ov-text">Cada secção tem um propósito de conversão claro.</div>
+      <ul class="ov-list">
+        <li>Gerar pedidos de orçamento</li>
+        <li>Transmitir confiança e profissionalismo</li>
+        <li>Apresentar parcerias Daikin & Toyotomi</li>
+        <li>Destacar avaliação Google 4.9 ★</li>
+        <li>Facilitar contacto por telefone e WhatsApp</li>
+        <li>Resposta 24h visível desde o topo</li>
+      </ul>
+    </div>
+    <div class="overview-card">
+      <div class="ov-icon">✨</div>
+      <div class="ov-title">Destaques de design</div>
+      <div class="ov-text">Visual premium alinhado com as melhores marcas do sector.</div>
+      <ul class="ov-list">
+        <li>Hero slider com imagens reais (Unsplash)</li>
+        <li>Paleta azul profissional + navy</li>
+        <li>Tipografia Inter — clean e moderna</li>
+        <li>Animações de entrada suaves (scroll)</li>
+        <li>Micro-interacções nos botões e cards</li>
+        <li>WhatsApp floating button</li>
+      </ul>
+    </div>
+    <div class="overview-card">
+      <div class="ov-icon">📱</div>
+      <div class="ov-title">Mobile & Responsivo</div>
+      <div class="ov-text">Desenhado mobile-first, funciona em qualquer ecrã.</div>
+      <ul class="ov-list">
+        <li>Menu hamburger para mobile</li>
+        <li>Grids adaptativas (4→2→1 coluna)</li>
+        <li>Hero slider com swipe touch</li>
+        <li>Formulário optimizado para mobile</li>
+        <li>Botão de chamada directo no topo</li>
+      </ul>
+    </div>
+  </div>
+  <span class="pg-num">01</span>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PÁG 2 — IDENTIDADE VISUAL
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="section-header">
+    <p class="sec-label">02 — Identidade Visual</p>
+    <h2 class="sec-title">Paleta & Tipografia</h2>
+    <p class="sec-desc">Sistema de cores coerente, moderno e com contraste de acessibilidade WCAG AA.</p>
+  </div>
+
+  <div class="brand-section">
+    <!-- Paleta -->
+    <p style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Paleta de Cores</p>
+    <div class="color-palette">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0369A1"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Primary Blue</div>
+          <div class="swatch-hex">#0369A1</div>
+          <div class="swatch-use">Botões, links, destaques</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0EA5E9"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Accent Sky</div>
+          <div class="swatch-hex">#0EA5E9</div>
+          <div class="swatch-use">Gradientes, hero, badges</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0C1A2E"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Navy</div>
+          <div class="swatch-hex">#0C1A2E</div>
+          <div class="swatch-use">Títulos, footer, hero overlay</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0097E0"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Daikin Blue</div>
+          <div class="swatch-hex">#0097E0</div>
+          <div class="swatch-use">Secção parceiros Daikin</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#059669"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Success Green</div>
+          <div class="swatch-hex">#059669</div>
+          <div class="swatch-use">Confirmações, checks, online</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F8FAFC"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Surface</div>
+          <div class="swatch-hex">#F8FAFC</div>
+          <div class="swatch-use">Fundos de secção alternados</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tipografia -->
+    <p style="font-size:11px;font-weight:700;color:var(--navy);margin:14px 0 8px;text-transform:uppercase;letter-spacing:1px">Escala Tipográfica · Inter</p>
+    <div class="type-scale">
+      <div class="type-row">
+        <span class="type-sample" style="font-size:28px;letter-spacing:-1.5px">Display — 52px</span>
+        <span class="type-meta">Inter 900 · −2.5px<br>Títulos de hero</span>
+      </div>
+      <div class="type-row">
+        <span class="type-sample" style="font-size:22px;letter-spacing:-1px">H1 — Título de Página</span>
+        <span class="type-meta">Inter 800 · −1.5px<br>Headings de secção</span>
+      </div>
+      <div class="type-row">
+        <span class="type-sample" style="font-size:16px;font-weight:700">H2 — Sub-título de secção</span>
+        <span class="type-meta">Inter 700 · −0.5px<br>Títulos de card</span>
+      </div>
+      <div class="type-row">
+        <span class="type-sample" style="font-size:13px;font-weight:400;color:var(--muted);letter-spacing:0">Lead — Texto descritivo de apoio, linha auxiliar dos títulos</span>
+        <span class="type-meta">Inter 400<br>Parágrafos lead</span>
+      </div>
+    </div>
+
+    <!-- Logo note -->
+    <div style="display:flex;align-items:center;gap:16px;margin-top:14px;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:14px 18px">
+      <svg width="32" height="32" viewBox="0 0 100 100">
+        <path fill="#0369A1" d="M43.3 5.5l-2.2 8.3a33.4 33.4 0 00-8.1 3.4l-7.8-3.8-9.4 9.4 3.8 7.8a33.4 33.4 0 00-3.4 8.1L8 40.9v13.2l8.3 2.2a33.4 33.4 0 003.4 8.1l-3.8 7.8 9.4 9.4 7.8-3.8a33.4 33.4 0 008.1 3.4l2.2 8.3h13.2l2.2-8.3a33.4 33.4 0 008.1-3.4l7.8 3.8 9.4-9.4-3.8-7.8a33.4 33.4 0 003.4-8.1L92 54V40.9l-8.3-2.2a33.4 33.4 0 00-3.4-8.1l3.8-7.8-9.4-9.4-7.8 3.8a33.4 33.4 0 00-8.1-3.4L56.7 5.5H43.3zM50 34a16 16 0 110 32 16 16 0 010-32z"/>
+      </svg>
+      <div>
+        <div style="font-size:18px;font-weight:800;color:var(--navy);letter-spacing:-.5px">Air<span style="color:var(--primary)">Tech</span></div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px">Logótipo — ícone engrenagem (SVG inline) + wordmark Inter 800 · animação rotação 16s</div>
+      </div>
+    </div>
+  </div>
+
+  <span class="pg-num">02</span>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PÁG 3 — HERO SLIDER
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="section-header">
+    <p class="sec-label">03 — Página Inicial</p>
+    <h2 class="sec-title">Hero Slider</h2>
+    <p class="sec-desc">3 slides com transição crossfade, avanço automático a cada 5 segundos, navegação por setas e dots.</p>
+  </div>
+
+  <!-- Browser mockup -->
+  <div style="padding:0 14mm">
+    <div class="hero-mockup">
+      <div class="hero-mock-bar">
+        <div class="mock-dot" style="background:#FF5F57"></div>
+        <div class="mock-dot" style="background:#FEBC2E"></div>
+        <div class="mock-dot" style="background:#28C840"></div>
+        <div class="mock-url">airtech.pt</div>
+      </div>
+      <!-- navbar strip -->
+      <div style="background:#fff;border-bottom:1px solid #E2E8F0;padding:8px 20px;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:6px">
+          <svg width="14" height="14" viewBox="0 0 100 100"><path fill="#0369A1" d="M43.3 5.5l-2.2 8.3a33.4 33.4 0 00-8.1 3.4l-7.8-3.8-9.4 9.4 3.8 7.8a33.4 33.4 0 00-3.4 8.1L8 40.9v13.2l8.3 2.2a33.4 33.4 0 003.4 8.1l-3.8 7.8 9.4 9.4 7.8-3.8a33.4 33.4 0 008.1 3.4l2.2 8.3h13.2l2.2-8.3a33.4 33.4 0 008.1-3.4l7.8 3.8 9.4-9.4-3.8-7.8a33.4 33.4 0 003.4-8.1L92 54V40.9l-8.3-2.2a33.4 33.4 0 00-3.4-8.1l3.8-7.8-9.4-9.4-7.8 3.8a33.4 33.4 0 00-8.1-3.4L56.7 5.5H43.3zM50 34a16 16 0 110 32 16 16 0 010-32z"/></svg>
+          <span style="font-size:10px;font-weight:800;color:#0C1A2E">Air<span style="color:#0369A1">Tech</span></span>
+        </div>
+        <div style="display:flex;gap:12px">
+          <span style="font-size:9px;color:#64748B">Início</span>
+          <span style="font-size:9px;color:#64748B">Sobre Nós</span>
+          <span style="font-size:9px;color:#64748B">Serviços</span>
+          <span style="font-size:9px;color:#64748B">Avaliações</span>
+          <span style="font-size:9px;color:#64748B">Contactos</span>
+          <span style="font-size:9px;font-weight:700;background:#0369A1;color:#fff;padding:3px 8px;border-radius:4px">Orçamento</span>
+        </div>
+      </div>
+      <div class="hero-mock-img" style="background-image:url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?auto=format&fit=crop&w=800&q=60')">
+        <div class="hero-mock-overlay"></div>
+        <div class="hero-mock-content">
+          <span class="hero-mock-badge">● Disponível 24 horas · Zona Centro</span>
+          <div class="hero-mock-h1">Conforto Perfeito<br>Em Cada Divisão</div>
+          <div class="hero-mock-sub">Técnicos certificados. Resposta em menos de 2 horas,<br>preço justo e serviço simpático e cuidado.</div>
+          <div class="hero-mock-btns">
+            <span class="hero-mock-btn1">Pedir Orçamento Grátis</span>
+            <span class="hero-mock-btn2">📞 Assistência 24h</span>
+          </div>
+        </div>
+        <div class="hero-mock-slider-dots">
+          <div class="mock-sdot active"></div>
+          <div class="mock-sdot"></div>
+          <div class="mock-sdot"></div>
+        </div>
+        <!-- arrows -->
+        <div style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:22px;height:22px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff">‹</div>
+        <div style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:22px;height:22px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff">›</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 slides detail -->
+  <div class="section-header" style="padding-top:14px">
+    <p class="sec-label" style="font-size:10px">Detalhe dos 3 Slides</p>
+  </div>
+  <div class="slides-row">
+    <div class="slide-card">
+      <div class="slide-card-img" style="background-image:url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?auto=format&fit=crop&w=400&q=60')">
+        <div class="slide-card-overlay"><div class="slide-card-num">1</div></div>
+      </div>
+      <div class="slide-card-body">
+        <div class="slide-card-title">Conforto Perfeito Em Cada Divisão</div>
+        <div class="slide-card-desc">Interior moderno. Transmite conforto doméstico e ambiente familiar.</div>
+        <span class="slide-card-tag">CTA: Pedir Orçamento</span>
+      </div>
+    </div>
+    <div class="slide-card">
+      <div class="slide-card-img" style="background-image:url('https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=400&q=60')">
+        <div class="slide-card-overlay"><div class="slide-card-num">2</div></div>
+      </div>
+      <div class="slide-card-body">
+        <div class="slide-card-title">Assistência 24 Horas. Resposta em 2h.</div>
+        <div class="slide-card-desc">Técnico em acção. Reforça urgência, disponibilidade e profissionalismo.</div>
+        <span class="slide-card-tag">CTA: Assistência Urgente</span>
+      </div>
+    </div>
+    <div class="slide-card">
+      <div class="slide-card-img" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=400&q=60')">
+        <div class="slide-card-overlay"><div class="slide-card-num">3</div></div>
+      </div>
+      <div class="slide-card-body">
+        <div class="slide-card-title">Instaladores Certificados Daikin & Toyotomi</div>
+        <div class="slide-card-desc">Edifício moderno. Destaca posicionamento premium e credibilidade de marca.</div>
+        <span class="slide-card-tag">CTA: Ver Marcas</span>
+      </div>
+    </div>
+  </div>
+
+  <span class="pg-num">03</span>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PÁG 4 — SERVIÇOS
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="section-header">
+    <p class="sec-label">04 — Serviços</p>
+    <h2 class="sec-title">3 Serviços Principais</h2>
+    <p class="sec-desc">Cada serviço tem página própria com descrição detalhada, processo, preços indicativos e formulário de contacto.</p>
+  </div>
+
+  <div class="services-mock">
+    <div class="svc-card">
+      <div class="svc-img" style="background:linear-gradient(135deg,#0369A1,#0EA5E9)"></div>
+      <div class="svc-body">
+        <div class="svc-icon">❄️</div>
+        <div class="svc-name">Instalação</div>
+        <div class="svc-desc">Instalação de sistemas split, multi-split e VRF para habitação e comércio. Certificados F-GAS.</div>
+        <ul class="ov-list" style="margin-bottom:8px">
+          <li>Visita técnica gratuita</li>
+          <li>Instalação em 1 dia</li>
+          <li>Garantia 5 anos</li>
+          <li>Certificado de conformidade</li>
+        </ul>
+        <span class="svc-price">A partir de 350 €</span>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-img" style="background:linear-gradient(135deg,#059669,#10B981)"></div>
+      <div class="svc-body">
+        <div class="svc-icon">🔧</div>
+        <div class="svc-name">Manutenção</div>
+        <div class="svc-desc">Limpeza, verificação de filtros, controlo de carga de gás e diagnóstico preventivo anual.</div>
+        <ul class="ov-list" style="margin-bottom:8px">
+          <li>Plano anual com desconto</li>
+          <li>Relatório técnico digital</li>
+          <li>Limpeza profunda de filtros</li>
+          <li>Verificação de pressões de gás</li>
+        </ul>
+        <span class="svc-price">A partir de 80 €</span>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-img" style="background:linear-gradient(135deg,#DC2626,#F97316)"></div>
+      <div class="svc-body">
+        <div class="svc-icon">⚡</div>
+        <div class="svc-name">Reparação</div>
+        <div class="svc-desc">Diagnóstico e reparação de avarias em qualquer marca. Orçamento antes de qualquer intervenção.</div>
+        <ul class="ov-list" style="margin-bottom:8px">
+          <li>Diagnóstico em 24h</li>
+          <li>Peças originais certificadas</li>
+          <li>Orçamento sem compromisso</li>
+          <li>Urgências ao fim de semana</li>
+        </ul>
+        <span class="svc-price">Diagnóstico 39 €</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats bar mockup -->
+  <div style="margin:0 14mm;background:var(--navy);border-radius:12px;padding:18px 24px">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:0">
+      <div style="border-right:1px solid rgba(255,255,255,.1);padding:0 12px">
+        <div style="font-size:26px;font-weight:800;color:#fff;letter-spacing:-1px">500<span style="color:#60A5FA">+</span></div>
+        <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:3px">Clientes satisfeitos</div>
+      </div>
+      <div style="border-right:1px solid rgba(255,255,255,.1);padding:0 12px">
+        <div style="font-size:26px;font-weight:800;color:#fff;letter-spacing:-1px">2024</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:3px">Fundada com propósito</div>
+      </div>
+      <div style="border-right:1px solid rgba(255,255,255,.1);padding:0 12px">
+        <div style="font-size:26px;font-weight:800;color:#fff;letter-spacing:-1px">&lt;2<span style="color:#60A5FA">h</span></div>
+        <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:3px">Tempo de resposta</div>
+      </div>
+      <div style="padding:0 12px">
+        <div style="font-size:26px;font-weight:800;color:#fff;letter-spacing:-1px">5<span style="color:#60A5FA">★</span></div>
+        <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:3px">Garantia anos mão-de-obra</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:12px 14mm 0;padding:14px 18px;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px">
+    <p style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:6px">🏠 Nossa Missão</p>
+    <p style="font-size:12px;color:var(--muted);line-height:1.65;font-style:italic">
+      "Nascemos em 2024 com um único propósito: servir melhor ao melhor preço. Um serviço simpático,
+      cuidado e transparente — porque o conforto da sua casa merece técnicos de confiança."
+    </p>
+    <p style="font-size:10px;color:var(--primary);font-weight:600;margin-top:6px">— Equipa AirTech, Zona Centro</p>
+  </div>
+
+  <span class="pg-num">04</span>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PÁG 5 — PARCEIROS DAIKIN & TOYOTOMI
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="section-header">
+    <p class="sec-label">05 — Parcerias de Marca</p>
+    <h2 class="sec-title">Daikin & Toyotomi</h2>
+    <p class="sec-desc">Representantes certificados das duas marcas líderes do mercado — transmite autoridade e confiança aos visitantes.</p>
+  </div>
+
+  <div class="brands-section">
+    <div class="brands-header">
+      <div class="brands-header-left">
+        <div class="bl-label">Parceiros Certificados</div>
+        <div class="bl-title">Instaladores Oficiais</div>
+        <div class="bl-sub">Certificação técnica em equipamentos de climatização</div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <div class="cert-badge">
+          <div class="cb-icon">🏅</div>
+          <div class="cb-text">F-GAS Cert.</div>
+        </div>
+        <div class="cert-badge">
+          <div class="cb-icon">⚙️</div>
+          <div class="cb-text">Técnicos Cert.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="brands-row">
+      <!-- DAIKIN -->
+      <div class="brand-card brand-card-daikin">
+        <div class="brand-header-daikin">
+          <div>
+            <div class="brand-logo-name">DAIKIN</div>
+            <div class="brand-logo-tagline">Minds for the future · Japan, 1924</div>
+          </div>
+          <span class="brand-cert-pill">Instalador Certificado</span>
+        </div>
+        <div class="brand-body">
+          <p class="brand-about">
+            Daikin é o maior fabricante mundial de sistemas de ar condicionado.
+            Com presença em mais de 150 países, os equipamentos Daikin lideram em
+            eficiência energética (A+++) e durabilidade. A AirTech é instalador
+            certificado para a Zona Centro.
+          </p>
+          <div class="brand-specs">
+            <span class="bspec">Eficiência A+++</span>
+            <span class="bspec">Split & Multi-Split</span>
+            <span class="bspec">VRV / VRF</span>
+            <span class="bspec">Inverter DC</span>
+            <span class="bspec">R-32 Ecológico</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOYOTOMI -->
+      <div class="brand-card brand-card-toyotomi">
+        <div class="brand-header-toyotomi">
+          <div>
+            <div class="brand-logo-name" style="text-shadow:0 1px 3px rgba(0,0,0,.2)">TOYOTOMI</div>
+            <div class="brand-logo-tagline" style="color:rgba(255,255,255,.85)">Innovation for comfort · Japan</div>
+          </div>
+          <span class="brand-cert-pill">Instalador Certificado</span>
+        </div>
+        <div class="brand-body">
+          <p class="brand-about">
+            Toyotomi é uma referência japonesa em climatização de qualidade acessível.
+            Conhecida pela fiabilidade dos seus compressores e facilidade de utilização,
+            é uma escolha popular para habitação. A AirTech oferece instalação e
+            assistência técnica certificada em todos os modelos.
+          </p>
+          <div class="brand-specs">
+            <span class="bspec">Qualidade Japonesa</span>
+            <span class="bspec">Preço Competitivo</span>
+            <span class="bspec">Inverter</span>
+            <span class="bspec">Wifi Ready</span>
+            <span class="bspec">Silencioso</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparativo -->
+    <div style="margin-top:12px;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;font-size:10px">
+        <div style="padding:10px 14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border)">Característica</div>
+        <div style="padding:10px 14px;font-weight:700;color:#0097E0;text-align:center;border-bottom:1px solid var(--border);border-left:1px solid var(--border)">DAIKIN</div>
+        <div style="padding:10px 14px;font-weight:700;color:#F7931E;text-align:center;border-bottom:1px solid var(--border);border-left:1px solid var(--border)">TOYOTOMI</div>
+
+        <div style="padding:9px 14px;color:var(--body);border-bottom:1px solid var(--border)">Eficiência Energética</div>
+        <div style="padding:9px 14px;text-align:center;color:var(--green);font-weight:700;border-bottom:1px solid var(--border);border-left:1px solid var(--border)">A+++</div>
+        <div style="padding:9px 14px;text-align:center;color:var(--green);font-weight:700;border-bottom:1px solid var(--border);border-left:1px solid var(--border)">A++</div>
+
+        <div style="padding:9px 14px;color:var(--body);border-bottom:1px solid var(--border)">Posicionamento</div>
+        <div style="padding:9px 14px;text-align:center;color:var(--muted);border-bottom:1px solid var(--border);border-left:1px solid var(--border)">Premium</div>
+        <div style="padding:9px 14px;text-align:center;color:var(--muted);border-bottom:1px solid var(--border);border-left:1px solid var(--border)">Médio/Alto</div>
+
+        <div style="padding:9px 14px;color:var(--body)">Garantia de fábrica</div>
+        <div style="padding:9px 14px;text-align:center;color:var(--muted);border-left:1px solid var(--border)">5 anos</div>
+        <div style="padding:9px 14px;text-align:center;color:var(--muted);border-left:1px solid var(--border)">3 anos</div>
+      </div>
+    </div>
+  </div>
+
+  <span class="pg-num">05</span>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PÁG 6 — AVALIAÇÕES GOOGLE
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="section-header">
+    <p class="sec-label">06 — Avaliações</p>
+    <h2 class="sec-title">Google Rating · 4.9 ★</h2>
+    <p class="sec-desc">A página de avaliações apresenta apenas a classificação Google — sem reviews escritas. Impacto visual máximo, credibilidade imediata.</p>
+  </div>
+
+  <div class="rating-page-content">
+    <div class="google-widget">
+      <div class="g-logo-row">
+        <div class="g-icon"><span>G</span></div>
+        <div>
+          <div class="g-business-label">AirTech — Ar Condicionado</div>
+          <div class="g-business-sub">Google Business Profile</div>
+        </div>
+      </div>
+      <div class="g-score">4.9</div>
+      <div class="g-stars">★★★★★</div>
+      <div class="g-count">Baseado em <a>87 avaliações</a> no Google</div>
+    </div>
+
+    <p class="google-note">
+      A classificação é actualizada automaticamente conforme novos clientes<br>
+      deixam avaliações no Google Maps. Botão directo para avaliar no Google.
+    </p>
+
+    <div class="trust-row">
+      <div class="trust-badge">
+        <div class="tb-icon">⭐</div>
+        <div class="tb-value">4.9</div>
+        <div class="tb-label">Média Google</div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-icon">💬</div>
+        <div class="tb-value">87</div>
+        <div class="tb-label">Avaliações</div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-icon">🏆</div>
+        <div class="tb-value">96%</div>
+        <div class="tb-label">5 estrelas</div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-icon">✅</div>
+        <div class="tb-value">100%</div>
+        <div class="tb-label">Verificadas</div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:16px 20px">
+      <p style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:10px">Distribuição de Estrelas</p>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:11px;color:var(--muted);width:24px">5★</span>
+          <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:92%;height:100%;background:#FBBC05;border-radius:4px"></div></div>
+          <span style="font-size:10px;color:var(--muted);width:24px">92%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:11px;color:var(--muted);width:24px">4★</span>
+          <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:6%;height:100%;background:#FBBC05;opacity:.6;border-radius:4px"></div></div>
+          <span style="font-size:10px;color:var(--muted);width:24px">6%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:11px;color:var(--muted);width:24px">3★</span>
+          <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:2%;height:100%;background:#FBBC05;opacity:.4;border-radius:4px"></div></div>
+          <span style="font-size:10px;color:var(--muted);width:24px">2%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="pg-num">06</span>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PÁG 7 — FORMULÁRIO DE ORÇAMENTO
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="section-header">
+    <p class="sec-label">07 — Conversão</p>
+    <h2 class="sec-title">Formulário de Orçamento</h2>
+    <p class="sec-desc">Formulário de 6 campos optimizado para conversão. Lead gerada é enviada directamente por email.</p>
+  </div>
+
+  <div class="form-mockup">
+    <p style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px">Pedir Orçamento Gratuito</p>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Resposta em menos de 2 horas. Sem compromisso.</p>
+    <div class="form-grid">
+      <div class="form-field">
+        <div class="form-label">Nome completo *</div>
+        <div class="form-input">João Silva</div>
+      </div>
+      <div class="form-field">
+        <div class="form-label">Telefone *</div>
+        <div class="form-input">+351 912 345 678</div>
+      </div>
+      <div class="form-field">
+        <div class="form-label">Email</div>
+        <div class="form-input" style="color:#aaa">joao@email.com</div>
+      </div>
+      <div class="form-field">
+        <div class="form-label">Concelho *</div>
+        <div class="form-input form-select">Coimbra ▾</div>
+      </div>
+      <div class="form-field">
+        <div class="form-label">Tipo de serviço *</div>
+        <div class="form-input form-select">Instalação ▾</div>
+      </div>
+      <div class="form-field">
+        <div class="form-label">Equipamento / Marca</div>
+        <div class="form-input form-select">Daikin ▾</div>
+      </div>
+    </div>
+    <div class="form-field" style="margin-bottom:10px">
+      <div class="form-label">Descrição (opcional)</div>
+      <div class="form-input" style="height:40px;color:#aaa">Casa com 3 divisões, piso 2...</div>
+    </div>
+    <div class="form-footer">
+      <div class="form-privacy">🔒 Os seus dados nunca são partilhados com terceiros.</div>
+      <div class="form-submit">Enviar Pedido →</div>
+    </div>
+  </div>
+
+  <!-- Side info -->
+  <div style="margin:10px 14mm 0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+    <div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+      <div style="font-size:20px;margin-bottom:6px">📞</div>
+      <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:2px">Preferir ligar?</div>
+      <div style="font-size:11px;color:var(--primary);font-weight:600">239 000 000</div>
+      <div style="font-size:10px;color:var(--muted)">Seg–Dom · 8h–22h</div>
+    </div>
+    <div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+      <div style="font-size:20px;margin-bottom:6px">💬</div>
+      <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:2px">WhatsApp</div>
+      <div style="font-size:11px;color:#25D366;font-weight:600">Resposta rápida</div>
+      <div style="font-size:10px;color:var(--muted)">Enviar mensagem</div>
+    </div>
+    <div style="background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+      <div style="font-size:20px;margin-bottom:6px">📍</div>
+      <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:2px">Zona de Actuação</div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.5">Coimbra · Aveiro<br>Viseu · Leiria</div>
+    </div>
+  </div>
+
+  <span class="pg-num">07</span>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PÁG 8 — TÉCNICA & ENTREGA
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="section-header">
+    <p class="sec-label">08 — Detalhes Técnicos</p>
+    <h2 class="sec-title">Tecnologia & Entrega</h2>
+    <p class="sec-desc">Website desenvolvido em código puro, sem dependências externas — rápido, seguro e de fácil manutenção.</p>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tech-icon">⚡</div>
+      <div class="tech-name">HTML / CSS / JavaScript Puro</div>
+      <div class="tech-desc">Sem frameworks, sem dependências. Um único ficheiro .html auto-contido. Funciona em qualquer servidor ou até localmente.</div>
+      <span class="tech-tag">Zero dependências</span>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">🧭</div>
+      <div class="tech-name">SPA com Hash Routing</div>
+      <div class="tech-desc">Navegação entre páginas via hash (#home, #servicos...) sem recarregar — experiência de app, velocidade máxima.</div>
+      <span class="tech-tag">Single Page Application</span>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">📸</div>
+      <div class="tech-name">Imagens Reais · Unsplash CDN</div>
+      <div class="tech-desc">Fotografia profissional de alta qualidade via CDN Unsplash. Carregamento optimizado com parâmetros auto=format&q=80.</div>
+      <span class="tech-tag">CDN Unsplash</span>
+    </div>
+    <div class="tech-card">
+      <div class="tech-icon">🎨</div>
+      <div class="tech-name">Google Fonts · Inter</div>
+      <div class="tech-desc">Tipografia Inter (pesos 300→900) via Google Fonts CDN. Clean, moderna e de alta legibilidade em todos os dispositivos.</div>
+      <span class="tech-tag">Inter Variable</span>
+    </div>
+  </div>
+
+  <!-- Estrutura de páginas -->
+  <div style="margin:10px 14mm 0">
+    <p style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Estrutura de Páginas</p>
+  </div>
+  <div class="pages-grid" style="padding-top:0">
+    <div class="page-card">
+      <div class="page-card-top" style="background:linear-gradient(135deg,#0369A1,#0EA5E9)">🏠</div>
+      <div class="page-card-body">
+        <div class="page-card-name">Início</div>
+        <div class="page-card-desc">Hero slider + stats + serviços + marcas + CTA</div>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-top" style="background:linear-gradient(135deg,#0C1A2E,#0369A1)">👥</div>
+      <div class="page-card-body">
+        <div class="page-card-name">Sobre Nós</div>
+        <div class="page-card-desc">História 2024, missão, valores, certificações</div>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-top" style="background:linear-gradient(135deg,#059669,#10B981)">🔧</div>
+      <div class="page-card-body">
+        <div class="page-card-name">Serviços</div>
+        <div class="page-card-desc">Vista geral dos 3 serviços com links</div>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-top" style="background:linear-gradient(135deg,#0097E0,#54C3F1)">❄️</div>
+      <div class="page-card-body">
+        <div class="page-card-name">Instalação</div>
+        <div class="page-card-desc">Página detalhe com processo, preços, FAQ</div>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-top" style="background:linear-gradient(135deg,#6366F1,#8B5CF6)">🔩</div>
+      <div class="page-card-body">
+        <div class="page-card-name">Manutenção</div>
+        <div class="page-card-desc">Página detalhe com planos anuais, checklist</div>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-top" style="background:linear-gradient(135deg,#DC2626,#F97316)">⚡</div>
+      <div class="page-card-body">
+        <div class="page-card-name">Reparação</div>
+        <div class="page-card-desc">Página detalhe, avarias comuns, urgências</div>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-top" style="background:linear-gradient(135deg,#FBBC05,#F59E0B)">⭐</div>
+      <div class="page-card-body">
+        <div class="page-card-name">Avaliações</div>
+        <div class="page-card-desc">Google rating 4.9★ sem reviews escritas</div>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-top" style="background:linear-gradient(135deg,#0C1A2E,#374151)">📍</div>
+      <div class="page-card-body">
+        <div class="page-card-name">Contactos</div>
+        <div class="page-card-desc">Mapa, morada, telefone, email, zona</div>
+      </div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-top" style="background:linear-gradient(135deg,#059669,#0369A1)">💬</div>
+      <div class="page-card-body">
+        <div class="page-card-name">Orçamento</div>
+        <div class="page-card-desc">Formulário de lead com 6 campos</div>
+      </div>
+    </div>
+  </div>
+
+  <span class="pg-num">08</span>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PÁG 9 — PLANO DE ENTREGA
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="section-header">
+    <p class="sec-label">09 — Plano de Entrega</p>
+    <h2 class="sec-title">Próximos Passos</h2>
+    <p class="sec-desc">Processo simples e transparente — do ficheiro ao ar em menos de uma semana.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">1</div>
+      <div class="tl-content">
+        <div class="tl-phase">Fase 1 · Imediato</div>
+        <div class="tl-title">Aprovação da Proposta</div>
+        <div class="tl-desc">Revisão deste documento, ajustes de conteúdo (textos, preços, zona de actuação, número de telefone real), aprovação da paleta de cores.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">2</div>
+      <div class="tl-content">
+        <div class="tl-phase">Fase 2 · 1 Dia</div>
+        <div class="tl-title">Desenvolvimento do Website Funcional</div>
+        <div class="tl-desc">Criação do ficheiro index.html completo com todas as 9 páginas, hero slider funcional, formulário, marcas Daikin & Toyotomi, Google rating e todas as secções definidas.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">3</div>
+      <div class="tl-content">
+        <div class="tl-phase">Fase 3 · 1 Dia</div>
+        <div class="tl-title">Revisão & Personalização Final</div>
+        <div class="tl-desc">Inserção do número real, endereço, Google Maps, link WhatsApp, link Google Business para avaliações, imagens específicas do negócio (opcional).</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">4</div>
+      <div class="tl-content">
+        <div class="tl-phase">Fase 4 · 1 Dia</div>
+        <div class="tl-title">Publicação Online</div>
+        <div class="tl-desc">Colocação no servidor / hosting à escolha. Opções: Netlify (gratuito), cPanel partilhado, ou domínio airtech.pt existente. Inclui teste final em mobile e desktop.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--green)">✓</div>
+      <div class="tl-content">
+        <div class="tl-phase">Entrega Final</div>
+        <div class="tl-title">Website Ao Vivo + Ficheiro Fonte</div>
+        <div class="tl-desc">Entrega do ficheiro HTML final, instruções de actualização de conteúdo, e suporte de 30 dias para pequenas correcções.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom CTA -->
+  <div style="margin:0 14mm;background:var(--navy);border-radius:14px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <p style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:6px">Pronto para começar?</p>
+      <p style="font-size:20px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:4px">Website AirTech — Entrega em 3 dias</p>
+      <p style="font-size:12px;color:rgba(255,255,255,.45)">Um único ficheiro HTML. Sem mensalidades. Sem plataformas. Seu para sempre.</p>
+    </div>
+    <div style="text-align:right;flex-shrink:0;margin-left:20px">
+      <div style="background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:12px 20px;border-radius:8px;margin-bottom:8px">Aprovar Proposta →</div>
+      <div style="font-size:10px;color:rgba(255,255,255,.3)">airtech@email.pt</div>
+    </div>
+  </div>
+
+  <div style="margin:12px 14mm 14mm;text-align:center">
+    <p style="font-size:10px;color:var(--muted)">AirTech — Instalação e Reparação de Ar Condicionado · Zona Centro · Fundada 2024</p>
+  </div>
+
+  <span class="pg-num">09</span>
+</div>
+
+</body>
+</html>
