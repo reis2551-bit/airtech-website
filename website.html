@@ -169,7 +169,47 @@ section  { padding:88px 0 }
   position:relative; z-index:1;
   max-width:1180px; margin:0 auto; padding:0 24px;
   padding-top:72px; padding-bottom:72px; width:100%;
+  display:grid; grid-template-columns:1fr 400px; gap:56px; align-items:center;
 }
+.hero-left { min-width:0 }
+.hero-form-card {
+  background:rgba(255,255,255,.10); backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:var(--r-lg); padding:34px;
+  box-shadow:0 24px 64px rgba(0,0,0,.32);
+}
+.hfc-title { font-size:20px; font-weight:800; color:#fff; margin-bottom:4px }
+.hfc-sub   { font-size:14px; color:rgba(255,255,255,.72); margin-bottom:22px }
+.hfc-row   { display:grid; grid-template-columns:1fr 1fr; gap:12px }
+.hfc-grp   { display:flex; flex-direction:column; gap:5px; margin-bottom:12px }
+.hfc-grp label { font-size:12px; font-weight:600; color:rgba(255,255,255,.88) }
+.hfc-grp input, .hfc-grp select {
+  font-family:'Inter',sans-serif; border:1.5px solid rgba(255,255,255,.25); border-radius:var(--r);
+  padding:11px 13px; font-size:14px; color:#fff; outline:none; width:100%;
+  transition:border-color var(--t), box-shadow var(--t);
+  background:rgba(255,255,255,.12);
+}
+.hfc-grp input::placeholder { color:rgba(255,255,255,.45) }
+.hfc-grp input:focus, .hfc-grp select:focus {
+  border-color:rgba(255,255,255,.6); box-shadow:0 0 0 3px rgba(255,255,255,.10);
+}
+.hfc-grp select {
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23ffffff'%3E%3Cpath d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 12px center; background-size:14px;
+}
+.hfc-grp select option { background:var(--navy); color:#fff }
+.hfc-submit { padding:14px; font-size:15px; font-weight:700; margin-top:4px }
+.hfc-note   { font-size:11px; color:rgba(255,255,255,.55); margin-top:9px; text-align:center }
+.hfc-contacts { display:flex; gap:10px; margin-top:14px }
+.hfc-ct {
+  flex:1; display:flex; align-items:center; justify-content:center; gap:7px;
+  padding:9px; background:rgba(255,255,255,.10); border-radius:var(--r);
+  font-size:12px; font-weight:600; color:rgba(255,255,255,.88);
+  border:1px solid rgba(255,255,255,.2); transition:border-color var(--t);
+}
+.hfc-ct:hover { border-color:rgba(255,255,255,.5) }
 .hero-badge {
   display:inline-flex; align-items:center; gap:10px;
   background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15);
@@ -452,6 +492,8 @@ footer { background:#060E1C; padding:60px 0 0 }
   section      { padding:64px 0 }
   .hd-nav, .hd-wa { display:none }
   .hd-ham      { display:flex }
+  .hero-content { grid-template-columns:1fr }
+  .hero-form-card { max-width:520px }
   .svc-grid    { grid-template-columns:1fr }
   .why-grid    { grid-template-columns:1fr }
   .car-slide   { flex:0 0 50% }
@@ -486,7 +528,7 @@ footer { background:#060E1C; padding:60px 0 0 }
 <!-- ════════════════════════════════════════
      WHATSAPP FLOAT
 ════════════════════════════════════════ -->
-<a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
+<a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
    target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="white">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
@@ -501,7 +543,7 @@ footer { background:#060E1C; padding:60px 0 0 }
 <div id="urg-bar">
   <span class="urg-dot"></span>
   Agenda quase cheia esta semana — últimas vagas disponíveis.
-  <a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+quero+garantir+uma+vaga+esta+semana" target="_blank">Garantir vaga →</a>
+  <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+quero+garantir+uma+vaga+esta+semana" target="_blank">Garantir vaga →</a>
 </div>
 
 
@@ -526,8 +568,8 @@ footer { background:#060E1C; padding:60px 0 0 }
     </nav>
 
     <div class="hd-right">
-      <a href="tel:+351939555581" class="hd-phone">📞 939 555 581</a>
-      <a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
+      <a href="tel:+351937058834" class="hd-phone">📞 937 058 834</a>
+      <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
          target="_blank" class="hd-wa btn">💬 WhatsApp</a>
     </div>
 
@@ -546,8 +588,8 @@ footer { background:#060E1C; padding:60px 0 0 }
   <a href="#faq"         class="hd-lnk" onclick="closeDrawer()">Perguntas Frequentes</a>
   <a href="#contacto"    class="hd-lnk" onclick="closeDrawer()">Contacto</a>
   <div class="dr-ctas">
-    <a href="tel:+351939555581" class="btn btn-blue btn-block btn-lg">📞 Ligar agora — 939 555 581</a>
-    <a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
+    <a href="tel:+351937058834" class="btn btn-blue btn-block btn-lg">📞 Ligar agora — 937 058 834</a>
+    <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
        target="_blank" class="btn btn-wa btn-block btn-lg">💬 Falar no WhatsApp</a>
   </div>
 </div>
@@ -568,49 +610,100 @@ footer { background:#060E1C; padding:60px 0 0 }
   <div class="hero-ov"></div>
 
   <div class="hero-content">
-    <div class="hero-badge">
-      <div class="hero-dot"></div>
-      Disponível hoje · Lisboa e Zona Centro
+
+    <!-- ESQUERDA: texto -->
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hero-dot"></div>
+        Disponível hoje · Lisboa e Zona Centro
+      </div>
+
+      <!--
+        ═══ 3 HEADLINES ═══
+        Variante B: "Ar condicionado instalado hoje.<br>Preço fixo, <span class='accent'>sem surpresas.</span>"
+        Variante C: "Avaria no AC? Resolvemos hoje<br><span class='accent'>— ou não cobramos a deslocação.</span>"
+      -->
+      <h1 class="h1 hero-h1">
+        O calor não avisa.<br>
+        Nós chegamos<br>
+        <span class="accent">em 2 horas.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Instalação, manutenção e reparação de ar condicionado.<br>
+        Técnicos certificados F-GAS. Preço fixo antes de começar.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
+           target="_blank" class="btn btn-wa btn-lg">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="flex-shrink:0">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.854L0 24l6.343-1.499A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.07-1.415l-.362-.216-3.765.89.952-3.668-.237-.377A9.818 9.818 0 1112 21.818z"/>
+          </svg>
+          Falar no WhatsApp agora
+        </a>
+        <a href="#contacto" class="btn btn-outline btn-lg">
+          → Ver disponibilidade hoje
+        </a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="ht-pill">⭐ Google 5.0</div>
+        <div class="ht-pill">🏅 F-GAS Certificado</div>
+        <div class="ht-pill">⚡ Resposta &lt;2 horas</div>
+        <div class="ht-pill">✅ Daikin &amp; Toyotomi</div>
+        <div class="ht-pill">🔒 Preço fixo antes de começar</div>
+      </div>
     </div>
 
-    <!--
-      ═══ 3 HEADLINES (decisão estratégica) ═══
-      A usada abaixo foca em VELOCIDADE + CONFIANÇA — o maior driver de decisão imediata.
+    <!-- DIREITA: formulário rápido -->
+    <div class="hero-form-card">
+      <div class="hfc-title">Pedir Orçamento Gratuito</div>
+      <div class="hfc-sub">Resposta em menos de 2 horas. Sem compromisso.</div>
 
-      Variante B (resultado + garantia):
-      "Ar condicionado instalado hoje.<br>Preço fixo, <span class='accent'>sem surpresas.</span>"
+      <form id="heroForm" onsubmit="handleHeroForm(event)">
+        <div class="hfc-row">
+          <div class="hfc-grp">
+            <label>Nome *</label>
+            <input type="text" placeholder="O seu nome" required/>
+          </div>
+          <div class="hfc-grp">
+            <label>Telefone *</label>
+            <input type="tel" placeholder="9XX XXX XXX" required/>
+          </div>
+        </div>
+        <div class="hfc-grp">
+          <label>Serviço *</label>
+          <select required>
+            <option value="">Seleccionar...</option>
+            <option>Instalação de A/C</option>
+            <option>Manutenção Preventiva</option>
+            <option>Reparação / Avaria</option>
+            <option>Urgência</option>
+            <option>Outra questão</option>
+          </select>
+        </div>
+        <div class="hfc-grp">
+          <label>Código Postal *</label>
+          <input type="text" placeholder="0000-000" required/>
+        </div>
+        <button type="submit" class="btn btn-wa btn-block hfc-submit" id="heroBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style="flex-shrink:0">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.854L0 24l6.343-1.499A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.07-1.415l-.362-.216-3.765.89.952-3.668-.237-.377A9.818 9.818 0 1112 21.818z"/>
+          </svg>
+          Enviar Pedido
+        </button>
+        <p class="hfc-note">🔒 Dados confidenciais. Sem compromisso.</p>
+      </form>
 
-      Variante C (medo + solução agressiva):
-      "Avaria no AC? Resolvemos hoje<br><span class='accent'>— ou não cobramos a deslocação.</span>"
-    -->
-    <h1 class="h1 hero-h1">
-      O calor não avisa.<br>
-      Nós chegamos<br>
-      <span class="accent">em 2 horas.</span>
-    </h1>
-
-    <p class="hero-sub">
-      Instalação, manutenção e reparação de ar condicionado.<br>
-      Técnicos certificados F-GAS. Preço fixo antes de começar.
-    </p>
-
-    <div class="hero-ctas">
-      <a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
-         target="_blank" class="btn btn-wa btn-lg">
-        💬 Falar no WhatsApp agora
-      </a>
-      <a href="#contacto" class="btn btn-outline btn-lg">
-        → Ver disponibilidade hoje
-      </a>
+      <div class="hfc-contacts">
+        <a href="tel:+351937058834" class="hfc-ct">📞 937 058 834</a>
+        <a href="https://wa.me/351937058834" target="_blank" class="hfc-ct">💬 WhatsApp</a>
+      </div>
     </div>
 
-    <div class="hero-trust">
-      <div class="ht-pill">⭐ Google 5.0</div>
-      <div class="ht-pill">🏅 F-GAS Certificado</div>
-      <div class="ht-pill">⚡ Resposta &lt;2 horas</div>
-      <div class="ht-pill">✅ Daikin &amp; Toyotomi</div>
-      <div class="ht-pill">🔒 Preço fixo antes de começar</div>
-    </div>
   </div>
 </section>
 
@@ -673,7 +766,7 @@ footer { background:#060E1C; padding:60px 0 0 }
             <li class="svc-bullet">Garantia de 5 anos na mão de obra</li>
           </ul>
           <div class="svc-cta">
-            <a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+preciso+de+instala%C3%A7%C3%A3o+de+ar+condicionado"
+            <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+instala%C3%A7%C3%A3o+de+ar+condicionado"
                target="_blank" class="svc-lnk">Pedir orçamento agora →</a>
           </div>
         </div>
@@ -696,7 +789,7 @@ footer { background:#060E1C; padding:60px 0 0 }
             <li class="svc-bullet">Plano anual com desconto</li>
           </ul>
           <div class="svc-cta">
-            <a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+preciso+de+manuten%C3%A7%C3%A3o+de+ar+condicionado"
+            <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+manuten%C3%A7%C3%A3o+de+ar+condicionado"
                target="_blank" class="svc-lnk">Agendar manutenção →</a>
           </div>
         </div>
@@ -719,7 +812,7 @@ footer { background:#060E1C; padding:60px 0 0 }
             <li class="svc-bullet">Urgências ao fim de semana</li>
           </ul>
           <div class="svc-cta">
-            <a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+tenho+uma+avaria+no+ar+condicionado"
+            <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+tenho+uma+avaria+no+ar+condicionado"
                target="_blank" class="svc-lnk">Reportar avaria agora →</a>
           </div>
         </div>
@@ -731,49 +824,90 @@ footer { background:#060E1C; padding:60px 0 0 }
 
 
 <!-- ════════════════════════════════════════
-     PORQUE NÓS — diferenciação forte
+     FAQ — PERGUNTAS SOBRE AR CONDICIONADO
 ════════════════════════════════════════ -->
-<section id="porque-nos">
+<section id="perguntas-ac" class="bg2">
   <div class="wrap">
     <div class="sec-head center fade-up">
-      <span class="eyebrow eyebrow-w">Porque escolher a AirTech</span>
-      <h2 class="h2 h2-w">Não somos mais uma empresa de AC.</h2>
-      <p class="lead lead-w" style="margin-top:14px;margin-inline:auto">
-        Fundada em 2024 com um objetivo: fazer diferente num setor onde faltam resposta, honestidade e cuidado.
+      <span class="eyebrow">Perguntas Frequentes</span>
+      <h2 class="h2">Tudo o que precisas de saber antes de decidir</h2>
+      <p class="lead" style="margin-top:16px">
+        As respostas às questões mais comuns sobre ar condicionado doméstico — diretas e sem rodeios.
       </p>
     </div>
 
-    <div class="why-grid">
-      <div class="why-card fade-up">
-        <div class="why-ic">⏰</div>
-        <h3>Chegamos à hora marcada</h3>
-        <p>Nada de janelas de 4 horas. Marcamos uma hora e cumprimos. Se nos atrasarmos, avisamos sempre com antecedência.</p>
+    <div class="faq-list fade-up">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Qual é o tipo de ar condicionado mais indicado para uma habitação?
+          <span class="faq-icon">▾</span>
+        </button>
+        <div class="faq-a">
+          Para a grande maioria das casas, o <strong>sistema split</strong> é a melhor opção. É composto por uma unidade interior e uma exterior, é silencioso, eficiente e discreto. Para quem precisa de climatizar vários compartimentos, o <strong>multi-split</strong> permite ligar várias unidades interiores a uma só exterior. Os sistemas de janela são mais limitados e raros em Portugal — raramente fazem sentido numa instalação nova.
+        </div>
       </div>
-      <div class="why-card fade-up">
-        <div class="why-ic">💰</div>
-        <h3>Preço fechado antes de começar</h3>
-        <p>O orçamento é aprovado por si antes de qualquer intervenção. O que foi acordado é o que é cobrado — nunca mais.</p>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Como sei qual a potência (BTU) adequada para o meu espaço?
+          <span class="faq-icon">▾</span>
+        </button>
+        <div class="faq-a">
+          A potência necessária depende da área do compartimento, da orientação solar, do isolamento e do pé-direito. Como regra geral, um quarto de 15 m² precisa de cerca de 9.000 BTU; uma sala de 25–30 m² requer 12.000 a 18.000 BTU. A nossa equipa faz esse cálculo gratuitamente antes de qualquer proposta — assim tens a certeza de não comprar potência a mais nem a menos.
+        </div>
       </div>
-      <div class="why-card fade-up">
-        <div class="why-ic">🧹</div>
-        <h3>Saímos como entrámos</h3>
-        <p>A sua casa fica exatamente como estava. Limpamos tudo antes de sair. Sem pó, sem entulho, sem desculpas.</p>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          A instalação é complicada? Quanto tempo demora?
+          <span class="faq-icon">▾</span>
+        </button>
+        <div class="faq-a">
+          Não. Uma instalação residencial standard fica concluída em <strong>4 a 6 horas</strong>. A equipa chega com todo o material necessário, faz os furos necessários com o mínimo de impacto nas paredes, instala, testa e limpa tudo antes de sair. No final recebes o certificado de instalação e a garantia documentada. O processo é simples do teu lado — só precisas de estar presente.
+        </div>
       </div>
-      <div class="why-card fade-up">
-        <div class="why-ic">⚡</div>
-        <h3>Resposta em menos de 2 horas</h3>
-        <p>Ligou? Resposta garantida em menos de 2 horas. Em urgências, mobilizamos equipa ainda mais depressa.</p>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          O ar condicionado consome muita energia na fatura?
+          <span class="faq-icon">▾</span>
+        </button>
+        <div class="faq-a">
+          Os equipamentos modernos com tecnologia <strong>Inverter</strong> são muito mais eficientes do que os modelos antigos. Um split de classe A+++ pode custar entre 20 a 50 cêntimos por hora em funcionamento — significativamente menos do que um aquecedor elétrico ou ar condicionado de há dez anos. Escolher o equipamento certo para a divisão certa é o que mais impacta a fatura: potência sobredimensionada desperdiça energia, potência insuficiente trabalha sempre no máximo.
+        </div>
       </div>
-      <div class="why-card fade-up">
-        <div class="why-ic">🏅</div>
-        <h3>Técnicos certificados F-GAS</h3>
-        <p>Todos os nossos técnicos têm certificação F-GAS. Trabalho legal, documentado, com garantia real.</p>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Com que frequência devo fazer manutenção ao ar condicionado?
+          <span class="faq-icon">▾</span>
+        </button>
+        <div class="faq-a">
+          O ideal é fazer uma <strong>manutenção anual</strong>, preferencialmente na primavera — antes do verão, quando o equipamento é mais exigido. A manutenção inclui limpeza profunda dos filtros e evaporador, controlo do gás refrigerante e diagnóstico geral. Um equipamento bem mantido consome menos energia, avaria menos e dura mais anos. Filtros sujos podem reduzir a eficiência em até 30%.
+        </div>
       </div>
-      <div class="why-card fade-up">
-        <div class="why-ic">🔄</div>
-        <h3>Se não ficar satisfeito, corrigimos</h3>
-        <p>Simples assim. Se algo não ficou como devia, voltamos e resolvemos. Sem burocracia, sem custo adicional.</p>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Qual é a vida útil média de um ar condicionado?
+          <span class="faq-icon">▾</span>
+        </button>
+        <div class="faq-a">
+          Um ar condicionado de qualidade, bem instalado e com manutenção anual, tem uma vida útil média de <strong>12 a 15 anos</strong>. Equipamentos de marcas premium como a Daikin podem durar ainda mais. Os principais fatores que reduzem a vida útil são a ausência de manutenção, instalações mal feitas e o uso de equipamento subdimensionado que trabalha sempre no limite. Uma boa instalação inicial é o maior investimento que podes fazer na longevidade do equipamento.
+        </div>
       </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Vale a pena ter ar condicionado com Wi-Fi e controlo remoto por app?
+          <span class="faq-icon">▾</span>
+        </button>
+        <div class="faq-a">
+          Sim, especialmente se tens um estilo de vida ativo. O controlo por <strong>Wi-Fi</strong> permite ligar o AC antes de chegar a casa, programar horários, monitorizar o consumo e integrar com assistentes de voz. Em termos de conforto faz diferença — entras em casa já à temperatura certa. A maioria dos modelos Daikin e Toyotomi já inclui esta funcionalidade de série ou como opção. O controlo remoto físico continua a ser suficiente para quem não usa a casa remotamente.
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -781,7 +915,7 @@ footer { background:#060E1C; padding:60px 0 0 }
 
 <!-- ════════════════════════════════════════
      PORTFOLIO CAROUSEL
-     Imagens: Trabalha ja feitos*.jpg + Exemplo 1-3.webp
+     Imagens: Trabalha ja feitos*.jpg (13 fotos reais)
 ════════════════════════════════════════ -->
 <section id="portfolio">
   <div class="wrap">
@@ -809,9 +943,6 @@ footer { background:#060E1C; padding:60px 0 0 }
       <div class="car-slide"><img src="imagens/Trabalha ja feitos10.jpg" alt="Trabalho AirTech"/></div>
       <div class="car-slide"><img src="imagens/Trabalha ja feitos11.jpg" alt="Trabalho AirTech"/></div>
       <div class="car-slide"><img src="imagens/Trabalha ja feitos12.jpg" alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Exemplo 1.webp"           alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Exemplo 2.webp"           alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Exemplo 3.webp"           alt="Trabalho AirTech"/></div>
     </div>
   </div>
 
@@ -902,9 +1033,9 @@ footer { background:#060E1C; padding:60px 0 0 }
       <h2 class="cta-mid-h">Agenda quase cheia esta semana.</h2>
       <p class="cta-mid-sub">Últimas vagas disponíveis. Não esperes até que não haja disponibilidade.</p>
       <div class="cta-mid-btns">
-        <a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+quero+garantir+uma+vaga+esta+semana"
+        <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+quero+garantir+uma+vaga+esta+semana"
            target="_blank" class="btn btn-wa btn-lg">💬 Garantir vaga no WhatsApp</a>
-        <a href="tel:+351939555581" class="btn btn-ghost btn-lg">📞 Ligar agora</a>
+        <a href="tel:+351937058834" class="btn btn-ghost btn-lg">📞 Ligar agora</a>
       </div>
     </div>
   </div>
@@ -992,83 +1123,6 @@ footer { background:#060E1C; padding:60px 0 0 }
 
 
 <!-- ════════════════════════════════════════
-     FAQ — remoção de objeções
-════════════════════════════════════════ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="sec-head center fade-up">
-      <span class="eyebrow">Perguntas frequentes</span>
-      <h2 class="h2">Tens dúvidas? Nós respondemos.</h2>
-    </div>
-
-    <div class="faq-list fade-up">
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Quanto tempo demora uma instalação?
-          <span class="faq-icon">▾</span>
-        </button>
-        <div class="faq-a">
-          A maioria das instalações residenciais fica concluída em 4 a 6 horas. Sistemas mais complexos (multi-split, escritórios) podem levar um dia completo. Damos sempre uma estimativa realista antes de começar — sem surpresas.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          O orçamento tem algum custo?
-          <span class="faq-icon">▾</span>
-        </button>
-        <div class="faq-a">
-          Não. O orçamento é completamente gratuito e sem qualquer compromisso. Avaliamos a situação, apresentamos o valor e a decisão é inteiramente sua. Não há qualquer pressão.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Trabalham com todas as marcas de ar condicionado?
-          <span class="faq-icon">▾</span>
-        </button>
-        <div class="faq-a">
-          Sim. Fazemos manutenção e reparação em qualquer marca — Daikin, Toyotomi, Mitsubishi, LG, Samsung, entre outras. Para instalações novas, recomendamos Daikin e Toyotomi, por serem as marcas com que temos parceria oficial e melhores condições de preço e garantia.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          A instalação danifica a parede ou deixa marcas?
-          <span class="faq-icon">▾</span>
-        </button>
-        <div class="faq-a">
-          Trabalhamos com equipamento profissional e técnicas que minimizam qualquer dano nas paredes. Os furos são selados e o acabamento é cuidado. Garantimos que o espaço fica limpo e em boas condições após a instalação.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Cobrem toda a área de Lisboa e Zona Centro?
-          <span class="faq-icon">▾</span>
-        </button>
-        <div class="faq-a">
-          Sim. Cobrimos Lisboa, Coimbra, Aveiro, Viseu, Leiria e arredores. Em caso de dúvida sobre a tua zona específica, contacta-nos — confirmamos disponibilidade de imediato.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          O que acontece se o trabalho não ficar bem?
-          <span class="faq-icon">▾</span>
-        </button>
-        <div class="faq-a">
-          Voltamos e corrigimos sem qualquer custo adicional. Toda a mão de obra tem 5 anos de garantia. Não saímos de um trabalho enquanto o cliente não estiver satisfeito — e se algo aparecer depois, estamos cá para resolver.
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
      CONTACT FORM
 ════════════════════════════════════════ -->
 <section id="contacto">
@@ -1085,7 +1139,7 @@ footer { background:#060E1C; padding:60px 0 0 }
             <div class="ct-ic">📞</div>
             <div>
               <div class="ct-lbl">Telefone</div>
-              <div class="ct-val"><a href="tel:+351939555581">939 555 581</a></div>
+              <div class="ct-val"><a href="tel:+351937058834">937 058 834</a></div>
             </div>
           </div>
           <div class="ct-item">
@@ -1093,7 +1147,7 @@ footer { background:#060E1C; padding:60px 0 0 }
             <div>
               <div class="ct-lbl">WhatsApp</div>
               <div class="ct-val">
-                <a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
+                <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
                    target="_blank" style="color:var(--green)">Clica para abrir conversa →</a>
               </div>
             </div>
@@ -1172,9 +1226,9 @@ footer { background:#060E1C; padding:60px 0 0 }
         Orçamento gratuito. Sem compromisso.<br>Resposta em menos de 2 horas.
       </p>
       <div class="cta-final-btns" style="margin-top:40px">
-        <a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
+        <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
            target="_blank" class="btn btn-wa btn-lg">💬 Falar no WhatsApp agora</a>
-        <a href="tel:+351939555581" class="btn btn-outline btn-lg">📞 939 555 581</a>
+        <a href="tel:+351937058834" class="btn btn-outline btn-lg">📞 937 058 834</a>
       </div>
       <p class="cta-urg-note">⚡ Agenda quase cheia esta semana — não esperes mais</p>
     </div>
@@ -1194,8 +1248,8 @@ footer { background:#060E1C; padding:60px 0 0 }
         </div>
         <p class="ft-desc">Especialistas em ar condicionado em Lisboa e Zona Centro. Técnicos certificados F-GAS. Resposta rápida e preço transparente.</p>
         <div class="ft-soc">
-          <a href="https://www.facebook.com/AirTech.clima25" target="_blank" class="ft-si" aria-label="Facebook">f</a>
-          <a href="https://wa.me/351939555581" target="_blank" class="ft-si" aria-label="WhatsApp">💬</a>
+          <a href="https://www.facebook.com/AirTech.clima25" target="_blank" class="ft-si" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
+          <a href="https://wa.me/351937058834" target="_blank" class="ft-si" aria-label="WhatsApp">💬</a>
         </div>
       </div>
 
@@ -1211,8 +1265,8 @@ footer { background:#060E1C; padding:60px 0 0 }
       <div class="ft-col">
         <h4>Contacto</h4>
         <ul>
-          <li><a href="tel:+351939555581">📞 939 555 581</a></li>
-          <li><a href="https://wa.me/351939555581?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado" target="_blank">💬 WhatsApp</a></li>
+          <li><a href="tel:+351937058834">📞 937 058 834</a></li>
+          <li><a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado" target="_blank">💬 WhatsApp</a></li>
           <li><span>Lisboa e Zona Centro</span></li>
           <li><a href="https://www.facebook.com/AirTech.clima25" target="_blank">Facebook</a></li>
         </ul>
@@ -1345,6 +1399,18 @@ document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
   });
 });
 
+/* ═══ HERO FORM HANDLER ═══ */
+function handleHeroForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('heroBtn');
+  btn.innerHTML = '✅ A redirecionar...';
+  btn.style.background = 'var(--green)';
+  btn.disabled = true;
+  setTimeout(() => {
+    window.open('https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado', '_blank');
+  }, 600);
+}
+
 /* ═══ FORM HANDLER ═══ */
 function handleForm(e) {
   e.preventDefault();
@@ -1354,7 +1420,7 @@ function handleForm(e) {
   btn.disabled = true;
   setTimeout(() => {
     window.open(
-      'https://wa.me/351939555581?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado',
+      'https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado',
       '_blank'
     );
   }, 700);
