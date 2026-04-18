@@ -559,12 +559,12 @@ footer { background:#060E1C; padding:60px 0 0 }
 
 <!-- Mobile Drawer -->
 <div class="drawer" id="drawer">
-  <a href="#servicos"    class="hd-lnk" onclick="closeDrawer()">Serviços</a>
-  <a href="#portfolio"   class="hd-lnk" onclick="closeDrawer()">Trabalhos Recentes</a>
-  <a href="#testemunhos" class="hd-lnk" onclick="closeDrawer()">Avaliações</a>
-  <a href="#garantias"   class="hd-lnk" onclick="closeDrawer()">Garantias</a>
-  <a href="#perguntas-ac" class="hd-lnk" onclick="closeDrawer()">Perguntas Frequentes</a>
-  <a href="#contacto"    class="hd-lnk" onclick="closeDrawer()">Contacto</a>
+  <a href="#servicos"     class="hd-lnk" onclick="event.preventDefault();drawerNav('servicos')">Serviços</a>
+  <a href="#portfolio"    class="hd-lnk" onclick="event.preventDefault();drawerNav('portfolio')">Trabalhos Recentes</a>
+  <a href="#testemunhos"  class="hd-lnk" onclick="event.preventDefault();drawerNav('testemunhos')">Avaliações</a>
+  <a href="#garantias"    class="hd-lnk" onclick="event.preventDefault();drawerNav('garantias')">Garantias</a>
+  <a href="#perguntas-ac" class="hd-lnk" onclick="event.preventDefault();drawerNav('perguntas-ac')">Perguntas Frequentes</a>
+  <a href="#contacto"     class="hd-lnk" onclick="event.preventDefault();drawerNav('contacto')">Contacto</a>
   <div class="dr-ctas">
     <a href="tel:+351937058834" class="btn btn-blue btn-block btn-lg">📞 Ligar agora — 937 058 834</a>
     <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
@@ -1261,6 +1261,13 @@ function closeDrawer() {
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('hd-ham').classList.remove('open');
   document.body.style.overflow = '';
+}
+function drawerNav(id) {
+  closeDrawer();
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, 320);
 }
 
 /* ═══ CAROUSEL ═══ */
