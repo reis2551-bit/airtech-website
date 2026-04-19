@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Planos de Manutenção | AirTech — Ar Condicionado em Lisboa</title>
+<meta name="description" content="Planos de manutenção preventiva para ar condicionado em Lisboa e Zona Centro. Técnicos certificados F-GAS. Essencial, Completo ou Premium — escolha o seu plano."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+
+/* ─── TOKENS ─────────────────────────────── */
+:root {
+  --navy:    #0A1628;
+  --navy-2:  #0E1E36;
+  --navy-3:  #142744;
+  --ink:     #0B1220;
+  --blue:    #0B66A5;
+  --blue-d:  #084F82;
+  --blue-l:  #EBF4FB;
+  --accent:  #38BDF8;
+  --accent-d:#0EA5E9;
+  --green:   #0F9D6B;
+  --wa:      #22C55E;
+  --wa-d:    #16A34A;
+  --text:    #0F172A;
+  --text2:   #334155;
+  --muted:   #667085;
+  --muted-2: #8A94A6;
+  --border:  #E6EBF2;
+  --border-2:#EEF2F7;
+  --bg:      #FFFFFF;
+  --bg2:     #F6F8FB;
+  --bg3:     #EEF2F7;
+  --r:       8px;
+  --r-md:    12px;
+  --r-lg:    18px;
+  --shadow-sm: 0 1px 2px rgba(10,22,40,.06), 0 1px 3px rgba(10,22,40,.04);
+  --shadow:  0 4px 18px rgba(10,22,40,.07), 0 1px 3px rgba(10,22,40,.04);
+  --shadow-lg: 0 24px 64px -16px rgba(10,22,40,.18), 0 2px 6px rgba(10,22,40,.05);
+  --t:       .22s ease;
+  --serif:   'Instrument Serif', 'Times New Roman', serif;
+}
+
+/* ─── RESET ──────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
+html  { scroll-behavior:smooth }
+body  { font-family:'Inter',sans-serif; color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden; line-height:1.6; font-feature-settings:'ss01','cv11' }
+a     { text-decoration:none; color:inherit }
+img   { display:block; max-width:100% }
+ul    { list-style:none }
+button { font-family:inherit; cursor:pointer; border:none; background:none }
+::selection { background:var(--accent); color:var(--navy) }
+
+/* ─── ANIMATIONS ─────────────────────────── */
+@keyframes spin        { to{transform:rotate(360deg)} }
+@keyframes pulse-dot   { 0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.55; transform:scale(.85)} }
+@keyframes pulse-ring  { 0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)} 70%{box-shadow:0 0 0 14px rgba(34,197,94,0)} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0)} }
+.fade-up { opacity:0; transform:translateY(18px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1) }
+.fade-up.visible { opacity:1; transform:none }
+
+/* ─── LAYOUT ─────────────────────────────── */
+.wrap    { max-width:1200px; margin:0 auto; padding:0 28px }
+section  { padding:104px 0 }
+.bg2     { background:var(--bg2) }
+
+/* ─── TYPOGRAPHY ─────────────────────────── */
+.eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+  color:var(--blue); margin-bottom:18px;
+}
+.eyebrow::before { content:''; width:20px; height:1px; background:currentColor; opacity:.5 }
+.eyebrow-w { color:var(--accent) }
+.eyebrow-w::before { background:currentColor; opacity:.5 }
+.h1 {
+  font-size:clamp(40px,6.4vw,76px); font-weight:700; line-height:1.02;
+  letter-spacing:-.035em; color:#fff; font-feature-settings:'ss01';
+}
+.h1 .serif { font-family:var(--serif); font-weight:400; font-style:italic; letter-spacing:-.015em }
+.h2 {
+  font-size:clamp(28px,4vw,48px); font-weight:700; line-height:1.08;
+  letter-spacing:-.03em; color:var(--navy);
+}
+.h2 .serif { font-family:var(--serif); font-weight:400; font-style:italic; letter-spacing:-.012em }
+.h2-w { color:#fff }
+.h3 { font-size:clamp(18px,2.5vw,24px); font-weight:700; letter-spacing:-.02em; color:var(--navy) }
+.lead { font-size:17px; line-height:1.7; color:var(--muted); max-width:620px }
+.lead-w { color:rgba(255,255,255,.68) }
+.center { text-align:center }
+.center .lead, .center .eyebrow { margin-inline:auto }
+.center .eyebrow { display:inline-flex }
+.sec-head { margin-bottom:68px }
+
+/* ─── BUTTONS ────────────────────────────── */
+.btn {
+  display:inline-flex; align-items:center; gap:10px;
+  font-weight:600; font-size:15px; padding:14px 26px;
+  border-radius:var(--r); transition:all var(--t);
+  justify-content:center; white-space:nowrap; border:none; cursor:pointer;
+  letter-spacing:-.01em;
+}
+.btn svg { flex-shrink:0 }
+.btn-wa    { background:var(--wa); color:#fff; box-shadow:0 1px 0 rgba(255,255,255,.2) inset, 0 8px 24px -6px rgba(34,197,94,.5) }
+.btn-wa:hover { background:var(--wa-d); transform:translateY(-1px); box-shadow:0 1px 0 rgba(255,255,255,.2) inset, 0 14px 32px -6px rgba(34,197,94,.55) }
+.btn-navy  { background:var(--navy); color:#fff }
+.btn-navy:hover { background:var(--navy-3); transform:translateY(-1px) }
+.btn-blue  { background:var(--blue); color:#fff; box-shadow:0 6px 20px -6px rgba(11,102,165,.45) }
+.btn-blue:hover { background:var(--blue-d); transform:translateY(-1px) }
+.btn-outline { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.28); backdrop-filter:blur(4px) }
+.btn-outline:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.55) }
+.btn-outline-dark { background:transparent; color:var(--navy); border:1.5px solid var(--border) }
+.btn-outline-dark:hover { border-color:var(--navy); background:var(--bg2) }
+.btn-lg    { padding:17px 32px; font-size:16px }
+.btn-block { width:100%; text-align:center }
+
+/* ─── AVAILABILITY BAR ─── */
+#avail-bar {
+  background:var(--navy-2); color:rgba(255,255,255,.86);
+  text-align:center; padding:10px 16px; font-size:13px; font-weight:500;
+  letter-spacing:-.005em; position:relative; z-index:1001;
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.avail-dot { display:inline-block; width:7px; height:7px; background:#4ADE80; border-radius:50%; margin-right:9px; vertical-align:middle; animation:pulse-dot 2s infinite; box-shadow:0 0 0 3px rgba(74,222,128,.15) }
+#avail-bar a { color:#fff; margin-left:10px; border-bottom:1px solid rgba(255,255,255,.3); padding-bottom:1px; font-weight:600; transition:border-color var(--t) }
+#avail-bar a:hover { border-color:#fff }
+.avail-sep { opacity:.3; margin:0 10px }
+.avail-sec-2 { color:rgba(255,255,255,.5) }
+
+/* ─── HEADER ─────────────────────────────── */
+#header {
+  position:sticky; top:0; z-index:1000; height:72px;
+  background:rgba(255,255,255,.96); backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  border-bottom:1px solid var(--border); box-shadow:0 1px 0 var(--border);
+  transition:background var(--t), box-shadow var(--t), border-color var(--t);
+}
+
+.hd-wrap {
+  max-width:1200px; margin:0 auto; padding:0 28px;
+  height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+.hd-logo { display:flex; align-items:center; gap:10px }
+.hd-gear { animation:spin 22s linear infinite }
+.hd-name  { font-size:19px; font-weight:800; color:var(--navy); letter-spacing:-.3px; transition:color var(--t) }
+.hd-name em { color:var(--blue); font-style:normal }
+
+
+.hd-nav { display:flex; gap:4px }
+.hd-lnk { font-size:14px; font-weight:500; color:var(--text2); padding:8px 14px; border-radius:6px; transition:all var(--t); letter-spacing:-.005em }
+.hd-lnk:hover { color:var(--navy); background:var(--bg2) }
+
+.hd-lnk-accent { color:#fff !important; font-weight:600; background:var(--blue); border-radius:6px }
+.hd-lnk-accent:hover { background:var(--blue-d) !important; color:#fff !important }
+
+
+.hd-right { display:flex; align-items:center; gap:10px }
+.hd-phone {
+  display:flex; align-items:center; gap:8px;
+  font-size:14px; font-weight:600; color:#fff;
+  padding:9px 16px; border-radius:var(--r); transition:all var(--t);
+  background:#111; border:none;
+}
+.hd-phone:hover { background:#000; transform:translateY(-1px) }
+
+.hd-wa { background:var(--wa); color:#fff; font-size:14px; font-weight:600; padding:10px 18px; border-radius:var(--r); transition:all var(--t); display:inline-flex; align-items:center; gap:8px; box-shadow:0 6px 16px -4px rgba(34,197,94,.5) }
+.hd-wa:hover { background:var(--wa-d); transform:translateY(-1px) }
+
+.hd-ham { display:none; flex-direction:column; gap:5px; padding:8px; cursor:pointer }
+.hd-ham span { width:22px; height:1.5px; background:var(--navy); border-radius:2px; transition:all .25s }
+
+.hd-ham.open span:nth-child(1) { transform:translateY(7px) rotate(45deg) }
+.hd-ham.open span:nth-child(2) { opacity:0 }
+.hd-ham.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg) }
+
+.drawer {
+  position:fixed; top:0; left:0; right:0; bottom:0; background:#fff; z-index:999;
+  padding:88px 28px 32px; transform:translateX(-100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column; gap:2px; overflow-y:auto;
+}
+.drawer.open { transform:none }
+.drawer .hd-lnk { color:#fff; font-size:17px; padding:14px 20px; border:1.5px solid #111; border-radius:8px; display:block; width:100%; text-align:center; margin-bottom:8px; background:var(--blue) }
+.drawer .hd-lnk:hover { background:var(--blue-d) }
+.drawer .hd-lnk-accent { border-color:var(--blue) !important; color:var(--blue) !important; background:transparent !important }
+.dr-ctas { margin-top:28px; display:flex; flex-direction:column; gap:10px }
+
+/* ─── PAGE HERO ──────────────────────────── */
+.page-hero {
+  background:var(--navy);
+  padding:120px 0 80px;
+  position:relative; overflow:hidden;
+}
+.page-hero::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 70% 80% at 70% 40%, rgba(56,189,248,.08) 0%, transparent 65%);
+  pointer-events:none;
+}
+.page-hero-content { position:relative; z-index:1 }
+
+/* ─── BENEFITS BAR ───────────────────────── */
+.benefits-bar {
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  padding:0;
+}
+.benefits-inner {
+  max-width:1200px; margin:0 auto; padding:0 28px;
+  display:flex; justify-content:space-around; align-items:stretch;
+}
+.ben-item {
+  display:flex; align-items:center; gap:12px;
+  padding:22px 16px; flex:1;
+  border-right:1px solid var(--border);
+}
+.ben-item:last-child { border-right:none }
+.ben-icon {
+  width:40px; height:40px; border-radius:10px;
+  background:var(--blue-l); color:var(--blue);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.ben-text strong { display:block; font-size:14px; font-weight:700; color:var(--navy); letter-spacing:-.01em }
+.ben-text span { font-size:12px; color:var(--muted) }
+
+/* ─── PLANS ──────────────────────────────── */
+.plans-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+  align-items:start;
+}
+.plan-card {
+  border:1.5px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:36px 32px 32px;
+  background:#fff;
+  position:relative;
+  transition:box-shadow var(--t), transform var(--t), border-color var(--t);
+}
+.plan-card:hover {
+  box-shadow:var(--shadow-lg);
+  transform:translateY(-4px);
+}
+.plan-card.featured {
+  border-color:var(--blue);
+  box-shadow:0 0 0 1px var(--blue), var(--shadow-lg);
+  transform:translateY(-6px);
+}
+.plan-badge {
+  position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+  background:var(--blue); color:#fff;
+  font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  padding:5px 16px; border-radius:50px;
+  white-space:nowrap;
+}
+.plan-name {
+  font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  color:var(--muted-2); margin-bottom:10px;
+}
+.plan-price {
+  font-size:42px; font-weight:800; color:var(--navy);
+  letter-spacing:-.04em; line-height:1; margin-bottom:4px;
+}
+.plan-price sup { font-size:20px; font-weight:700; vertical-align:super; margin-right:2px }
+.plan-period { font-size:13px; color:var(--muted); margin-bottom:6px }
+.plan-units { font-size:13px; color:var(--text2); font-weight:500; margin-bottom:24px }
+.plan-divider { height:1px; background:var(--border-2); margin:0 0 24px }
+.plan-features { display:flex; flex-direction:column; gap:11px; margin-bottom:28px }
+.pf-item {
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:14px; color:var(--text2); line-height:1.45;
+}
+.pf-check {
+  width:18px; height:18px; border-radius:50%; flex-shrink:0; margin-top:1px;
+  display:flex; align-items:center; justify-content:center;
+  background:#F0FDF4; color:var(--green);
+}
+.pf-check-blue {
+  background:var(--blue-l); color:var(--blue);
+}
+.pf-x {
+  width:18px; height:18px; border-radius:50%; flex-shrink:0; margin-top:1px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--bg3); color:var(--muted-2);
+}
+.pf-item.dim { opacity:.45 }
+
+/* ─── WHY SECTION ────────────────────────── */
+.why-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:28px;
+}
+.why-card {
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  padding:28px 26px;
+  box-shadow:var(--shadow-sm);
+}
+.why-icon {
+  width:48px; height:48px; border-radius:14px;
+  background:var(--blue-l); color:var(--blue);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:16px;
+}
+.why-card h3 { font-size:16px; font-weight:700; color:var(--navy); letter-spacing:-.02em; margin-bottom:8px }
+.why-card p  { font-size:14px; color:var(--muted); line-height:1.6 }
+
+/* ─── FAQ ────────────────────────────────── */
+.faq-list { max-width:820px; margin:0 auto }
+.faq-item { border-bottom:1px solid var(--border-2) }
+.faq-q {
+  width:100%; text-align:left; padding:22px 0;
+  font-size:16px; font-weight:600; color:var(--navy);
+  display:flex; justify-content:space-between; align-items:center; gap:16px;
+  cursor:pointer; transition:color var(--t); letter-spacing:-.015em;
+  background:none; border:none; font-family:inherit;
+}
+.faq-q:hover { color:var(--blue) }
+.faq-q .faq-icon { flex-shrink:0; transition:transform .25s; color:var(--muted-2) }
+.faq-q.open .faq-icon { transform:rotate(180deg); color:var(--blue) }
+.faq-a {
+  font-size:15px; color:var(--muted); line-height:1.7;
+  max-height:0; overflow:hidden; transition:max-height .35s ease, padding .35s ease;
+  padding-bottom:0;
+}
+.faq-a.open { max-height:400px; padding-bottom:22px }
+
+/* ─── CTA DARK ───────────────────────────── */
+#cta-final {
+  background:var(--navy);
+  padding:100px 0;
+}
+.cta-final-inner { position:relative; z-index:1; max-width:820px; margin:0 auto; text-align:center }
+.cta-final-btns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center }
+
+/* ─── FOOTER ─────────────────────────────── */
+footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
+.ft-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,.06) }
+.ft-logo-row { display:flex; align-items:center; gap:10px; margin-bottom:16px }
+.ft-nm  { font-size:19px; font-weight:700; color:#fff; letter-spacing:-.02em }
+.ft-nm em { color:var(--accent); font-style:normal }
+.ft-desc { font-size:14px; color:rgba(255,255,255,.42); line-height:1.75; max-width:300px; margin-bottom:24px }
+.ft-soc { display:flex; gap:8px }
+.ft-si  { width:36px; height:36px; border-radius:9px; background:rgba(255,255,255,.04); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.5); transition:all var(--t); border:1px solid rgba(255,255,255,.06) }
+.ft-si:hover { background:rgba(255,255,255,.08); color:#fff; border-color:rgba(255,255,255,.2) }
+.ft-col h4 { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.42); margin-bottom:20px }
+.ft-col li { margin-bottom:11px }
+.ft-col li a, .ft-col li span { font-size:14px; color:rgba(255,255,255,.55); transition:color var(--t); letter-spacing:-.005em }
+.ft-col li a:hover { color:#fff }
+.ft-bar { padding:24px 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px }
+.ft-copy { font-size:12px; color:rgba(255,255,255,.3); letter-spacing:-.005em }
+.ft-copy strong { color:rgba(255,255,255,.55); font-weight:500 }
+
+/* ─── FLOATING WA ────────────────────────── */
+.wa-float {
+  position:fixed; bottom:24px; right:24px; z-index:997;
+  width:58px; height:58px; border-radius:50%; background:var(--wa);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 28px -4px rgba(34,197,94,.55);
+  transition:transform var(--t), box-shadow var(--t);
+  animation:pulse-ring 2.4s infinite;
+}
+.wa-float:hover { transform:scale(1.08); animation:none; box-shadow:0 12px 36px -4px rgba(34,197,94,.7) }
+.wa-float svg { width:28px; height:28px }
+
+/* ─── RESPONSIVE ─────────────────────────── */
+@media (max-width:1024px) {
+  .ft-grid { grid-template-columns:1.4fr 1fr 1fr; gap:32px }
+  .ft-grid > div:first-child { grid-column:1/-1 }
+}
+@media (max-width:960px) {
+  .plans-grid { grid-template-columns:1fr }
+  .plan-card.featured { transform:none }
+  .why-grid { grid-template-columns:1fr 1fr }
+  .benefits-inner { flex-wrap:wrap }
+  .ben-item { border-right:none; border-bottom:1px solid var(--border); flex:1 1 48% }
+  .hd-nav, .hd-phone, .hd-wa { display:none }
+  .hd-ham { display:flex }
+}
+@media (max-width:820px) {
+  .ft-grid { grid-template-columns:1fr 1fr; gap:28px }
+  .ft-grid > div:first-child { grid-column:1/-1 }
+}
+@media (max-width:640px) {
+  .wrap { padding:0 20px }
+  section { padding:80px 0 }
+  .why-grid { grid-template-columns:1fr }
+  .ft-grid { grid-template-columns:1fr }
+  .page-hero { padding:100px 0 64px }
+  .ben-item { flex:1 1 100% }
+  .plan-card { padding:28px 22px }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ AVAILABILITY BAR ════════ -->
+<div id="avail-bar">
+  <span class="avail-dot"></span>
+  <span>Técnico disponível hoje em Lisboa e Zona Centro</span>
+  <span class="avail-sep avail-sec-2">·</span>
+  <span class="avail-sec-2">Resposta em &lt; 2h</span>
+  <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+queria+verificar+disponibilidade">Ver disponibilidade</a>
+</div>
+
+<!-- ════════ HEADER ════════ -->
+<header id="header">
+  <div class="hd-wrap">
+    <a href="website.html" class="hd-logo">
+      <svg class="hd-gear" width="28" height="28" viewBox="0 0 100 100">
+        <path fill="#0EA5E9" d="M43.3 5.5l-2.2 8.3a33.4 33.4 0 00-8.1 3.4l-7.8-3.8-9.4 9.4 3.8 7.8a33.4 33.4 0 00-3.4 8.1L8 40.9v13.2l8.3 2.2a33.4 33.4 0 003.4 8.1l-3.8 7.8 9.4 9.4 7.8-3.8a33.4 33.4 0 008.1 3.4l2.2 8.3h13.2l2.2-8.3a33.4 33.4 0 008.1-3.4l7.8 3.8 9.4-9.4-3.8-7.8a33.4 33.4 0 003.4-8.1L92 54V40.9l-8.3-2.2a33.4 33.4 0 00-3.4-8.1l3.8-7.8-9.4-9.4-7.8 3.8a33.4 33.4 0 00-8.1-3.4L56.7 5.5H43.3zM50 34a16 16 0 110 32 16 16 0 010-32z"/>
+      </svg>
+      <span class="hd-name">Air<em>Tech</em></span>
+    </a>
+
+    <nav class="hd-nav">
+      <a href="website.html#servicos"    class="hd-lnk">Serviços</a>
+      <a href="website.html#testemunhos" class="hd-lnk">Avaliações</a>
+      <a href="manutencao.html"          class="hd-lnk hd-lnk-accent">Manutenção</a>
+      <a href="sobre.html"               class="hd-lnk">Sobre nós</a>
+      <a href="contactos.html"           class="hd-lnk">Contacto</a>
+    </nav>
+
+    <div class="hd-right">
+      <a href="tel:+351937058834" class="hd-phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        937 058 834
+      </a>
+      <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
+         target="_blank" class="hd-wa">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.854L0 24l6.343-1.499A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.07-1.415l-.362-.216-3.765.89.952-3.668-.237-.377A9.818 9.818 0 1112 21.818z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+
+    <button class="hd-ham" id="hd-ham" onclick="toggleDrawer()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="drawer" id="drawer">
+  <a href="website.html#servicos"    class="hd-lnk">Serviços</a>
+  <a href="website.html#testemunhos" class="hd-lnk">Avaliações</a>
+  <a href="manutencao.html"          class="hd-lnk hd-lnk-accent">Manutenção</a>
+  <a href="sobre.html"               class="hd-lnk">Sobre nós</a>
+  <a href="contactos.html"           class="hd-lnk">Contacto</a>
+  <div class="dr-ctas">
+    <a href="tel:+351937058834" class="btn btn-navy btn-block btn-lg">Ligar: 937 058 834</a>
+    <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
+       target="_blank" class="btn btn-wa btn-block btn-lg">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.854L0 24l6.343-1.499A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.07-1.415l-.362-.216-3.765.89.952-3.668-.237-.377A9.818 9.818 0 1112 21.818z"/></svg>
+      Falar no WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- ════════ PAGE HERO ════════ -->
+<section class="page-hero">
+  <div class="wrap page-hero-content">
+    <span class="eyebrow eyebrow-w">Manutenção preventiva</span>
+    <h1 class="h1" style="max-width:760px;margin-bottom:20px">
+      O seu ar condicionado<br><span class="serif">sempre em forma.</span>
+    </h1>
+    <p class="lead lead-w" style="max-width:580px">
+      Planos anuais de manutenção que prolongam a vida do equipamento, reduzem o consumo energético e evitam avarias inesperadas.
+    </p>
+    <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#planos" class="btn btn-blue btn-lg">Ver planos
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+queria+saber+mais+sobre+os+planos+de+manuten%C3%A7%C3%A3o"
+         target="_blank" class="btn btn-outline btn-lg">Falar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BENEFITS BAR ════════ -->
+<div class="benefits-bar">
+  <div class="benefits-inner">
+    <div class="ben-item fade-up">
+      <div class="ben-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="ben-text">
+        <strong>Técnicos certificados</strong>
+        <span>F-GAS e parceiros Daikin</span>
+      </div>
+    </div>
+    <div class="ben-item fade-up">
+      <div class="ben-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="ben-text">
+        <strong>Agendamento flexível</strong>
+        <span>À hora que preferir</span>
+      </div>
+    </div>
+    <div class="ben-item fade-up">
+      <div class="ben-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="ben-text">
+        <strong>Garantia prolongada</strong>
+        <span>Em mão de obra</span>
+      </div>
+    </div>
+    <div class="ben-item fade-up">
+      <div class="ben-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div class="ben-text">
+        <strong>Preço anual fixo</strong>
+        <span>Sem surpresas</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PLANS ════════ -->
+<section id="planos">
+  <div class="wrap">
+    <div class="sec-head center fade-up">
+      <span class="eyebrow">Planos disponíveis</span>
+      <h2 class="h2">Escolha o seu <span class="serif">plano de manutenção.</span></h2>
+      <p class="lead" style="margin-top:18px">Todos os planos incluem deslocação e mão de obra. Preços por unidade interior.</p>
+    </div>
+
+    <div class="plans-grid">
+
+      <!-- ESSENCIAL -->
+      <div class="plan-card fade-up">
+        <div class="plan-name">Essencial</div>
+        <div class="plan-price"><sup>€</sup>49</div>
+        <div class="plan-period">por ano · por unidade</div>
+        <div class="plan-units">Ideal para 1 divisão</div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="pf-item">
+            <div class="pf-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>1 visita técnica anual</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Limpeza dos filtros interiores</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Verificação da carga de gás</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Relatório técnico digital</span>
+          </div>
+          <div class="pf-item dim">
+            <div class="pf-x"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span>Limpeza da unidade exterior</span>
+          </div>
+          <div class="pf-item dim">
+            <div class="pf-x"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span>Prioridade em caso de avaria</span>
+          </div>
+        </div>
+        <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+quero+o+plano+Essencial+de+manuten%C3%A7%C3%A3o"
+           target="_blank" class="btn btn-outline-dark btn-block">
+          Contratar plano
+        </a>
+      </div>
+
+      <!-- COMPLETO (FEATURED) -->
+      <div class="plan-card featured fade-up">
+        <div class="plan-badge">Mais popular</div>
+        <div class="plan-name">Completo</div>
+        <div class="plan-price"><sup>€</sup>89</div>
+        <div class="plan-period">por ano · por unidade</div>
+        <div class="plan-units">Ideal para casa completa</div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="pf-item">
+            <div class="pf-check pf-check-blue"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>2 visitas técnicas anuais</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check pf-check-blue"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Limpeza completa unidade interior</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check pf-check-blue"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Limpeza da unidade exterior</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check pf-check-blue"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Verificação e recarga de gás incluída</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check pf-check-blue"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Relatório técnico digital</span>
+          </div>
+          <div class="pf-item dim">
+            <div class="pf-x"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span>Prioridade máxima em avaria 24h</span>
+          </div>
+        </div>
+        <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+quero+o+plano+Completo+de+manuten%C3%A7%C3%A3o"
+           target="_blank" class="btn btn-blue btn-block">
+          Contratar plano
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="plan-card fade-up">
+        <div class="plan-name">Premium</div>
+        <div class="plan-price"><sup>€</sup>149</div>
+        <div class="plan-period">por ano · por unidade</div>
+        <div class="plan-units">Para quem quer zero preocupações</div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="pf-item">
+            <div class="pf-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>3 visitas técnicas anuais</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Limpeza completa interior e exterior</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Verificação e recarga de gás incluída</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Prioridade máxima em avaria 24h</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Diagnóstico de eficiência energética</span>
+          </div>
+          <div class="pf-item">
+            <div class="pf-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span>Relatório técnico digital completo</span>
+          </div>
+        </div>
+        <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+quero+o+plano+Premium+de+manuten%C3%A7%C3%A3o"
+           target="_blank" class="btn btn-navy btn-block">
+          Contratar plano
+        </a>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;font-size:13px;color:var(--muted-2);margin-top:28px">
+      * Preços indicativos por unidade interior. Para mais de 3 unidades, consulte-nos para desconto de volume.
+    </p>
+  </div>
+</section>
+
+<!-- ════════ WHY MAINTENANCE ════════ -->
+<section class="bg2">
+  <div class="wrap">
+    <div class="sec-head center fade-up">
+      <span class="eyebrow">Porquê fazer manutenção?</span>
+      <h2 class="h2">O custo de <span class="serif">não fazer nada.</span></h2>
+      <p class="lead" style="margin-top:18px">Um ar condicionado sem manutenção consome até 30% mais energia e avaria em média 3x mais.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Até 30% menos consumo</h3>
+        <p>Filtros limpos e circuito de gás calibrado garantem máxima eficiência. A conta da luz agradece.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h3>Avarias prevenidas</h3>
+        <p>A maioria das avarias é previsível. Detetamos problemas antes de se tornarem substituições caras.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Ar mais saudável</h3>
+        <p>Filtros limpos eliminam bactérias, ácaros e partículas. Essencial para alérgicos e crianças.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Vida útil prolongada</h3>
+        <p>Um equipamento bem mantido dura 15 a 20 anos. Sem manutenção, raramente passa dos 8.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+        </div>
+        <h3>Garantia do fabricante</h3>
+        <p>Muitos fabricantes exigem manutenção anual para manter a garantia válida. Emitimos certificado.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3>Sem surpresas no verão</h3>
+        <p>Nada pior do que um ar condicionado que avaria em agosto. A manutenção elimina este risco.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FAQ ════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head center fade-up">
+      <span class="eyebrow">Dúvidas frequentes</span>
+      <h2 class="h2">Perguntas sobre <span class="serif">manutenção.</span></h2>
+    </div>
+
+    <div class="faq-list fade-up">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Com que frequência devo fazer manutenção ao ar condicionado?
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          Recomendamos manutenção anual para uso doméstico normal. Em ambientes mais exigentes (espaços comerciais, zonas costeiras, uso intensivo) ou se houver alergias, duas vezes por ano é o ideal.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          O que acontece se não fizer manutenção?
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          Filtros obstruídos aumentam o consumo elétrico em 20 a 30% e reduzem o arrefecimento. Com o tempo, acumula bactérias e fungos no evaporador, e o compressor trabalha em esforço, levando a avarias prematuras. A falta de manutenção pode também invalidar a garantia do fabricante.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          A manutenção inclui a recarga de gás refrigerante?
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          No plano Essencial fazemos a verificação da pressão do gás. Nos planos Completo e Premium, a recarga de gás está incluída caso seja necessária (até 200g de R32 ou R410A). Recargas acima desse volume são orçamentadas separadamente.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quanto tempo demora uma visita de manutenção?
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          Entre 45 minutos e 1h30 por unidade, dependendo do plano e do estado do equipamento. Para múltiplas unidades no mesmo espaço fazemos tudo na mesma visita.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Posso contratar manutenção para qualquer marca?
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          Sim. Os nossos técnicos certificados F-GAS trabalham com todas as marcas — Daikin, Toyotomi, Mitsubishi, Samsung, LG, Gree, e outras. Somos parceiros oficiais Daikin e Toyotomi, mas não limitamos o serviço a estas marcas.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Como funciona o agendamento?
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          Após contratar o plano, um técnico entra em contacto para confirmar a data e hora preferidas. No dia anterior enviamos confirmação. Todas as comunicações são por WhatsApp para maior comodidade.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FINAL CTA ════════ -->
+<section id="cta-final">
+  <div class="wrap">
+  <div class="cta-final-inner fade-up">
+    <h2 class="h1">
+      Comece hoje.<br>
+      <span class="serif" style="color:var(--accent)">Sem compromisso.</span>
+    </h2>
+    <p class="lead lead-w" style="margin-top:20px;margin-inline:auto">
+      Fale connosco pelo WhatsApp e receba uma proposta personalizada para o seu equipamento.
+    </p>
+    <div class="cta-final-btns" style="margin-top:44px">
+      <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+tenho+interesse+nos+planos+de+manuten%C3%A7%C3%A3o+AirTech"
+         target="_blank" class="btn btn-wa btn-lg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.854L0 24l6.343-1.499A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.07-1.415l-.362-.216-3.765.89.952-3.668-.237-.377A9.818 9.818 0 1112 21.818z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a href="contactos.html" class="btn btn-outline btn-lg">
+        Formulário de contacto
+      </a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-logo-row">
+          <svg width="22" height="22" viewBox="0 0 100 100">
+            <path fill="#0EA5E9" d="M43.3 5.5l-2.2 8.3a33.4 33.4 0 00-8.1 3.4l-7.8-3.8-9.4 9.4 3.8 7.8a33.4 33.4 0 00-3.4 8.1L8 40.9v13.2l8.3 2.2a33.4 33.4 0 003.4 8.1l-3.8 7.8 9.4 9.4 7.8-3.8a33.4 33.4 0 008.1 3.4l2.2 8.3h13.2l2.2-8.3a33.4 33.4 0 008.1-3.4l7.8 3.8 9.4-9.4-3.8-7.8a33.4 33.4 0 003.4-8.1L92 54V40.9l-8.3-2.2a33.4 33.4 0 00-3.4-8.1l3.8-7.8-9.4-9.4-7.8 3.8a33.4 33.4 0 00-8.1-3.4L56.7 5.5H43.3zM50 34a16 16 0 110 32 16 16 0 010-32z"/>
+          </svg>
+          <span class="ft-nm">Air<em>Tech</em></span>
+        </div>
+        <p class="ft-desc">Especialistas em ar condicionado residencial em Lisboa e Zona Centro. Técnicos certificados F-GAS, resposta rápida e preço transparente.</p>
+        <div class="ft-soc">
+          <a href="https://www.facebook.com/AirTech.clima25" target="_blank" class="ft-si" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
+          <a href="https://wa.me/351937058834" target="_blank" class="ft-si" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.854L0 24l6.343-1.499A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.07-1.415l-.362-.216-3.765.89.952-3.668-.237-.377A9.818 9.818 0 1112 21.818z"/></svg></a>
+          <a href="tel:+351937058834" class="ft-si" aria-label="Telefone"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="website.html#servicos">Instalação residencial</a></li>
+          <li><a href="website.html#servicos">Reparações e avarias</a></li>
+          <li><a href="manutencao.html">Planos de manutenção</a></li>
+          <li><a href="website.html#servicos">Projetos comerciais</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="website.html#area">Zona de cobertura</a></li>
+          <li><a href="website.html#perguntas-ac">FAQ</a></li>
+          <li><a href="sobre.html">Sobre nós</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+351937058834">937 058 834</a></li>
+          <li><a href="mailto:info@airtech.pt">info@airtech.pt</a></li>
+          <li><a href="contactos.html">Formulário</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bar">
+      <span class="ft-copy">© 2026 AirTech. Todos os direitos reservados.</span>
+      <span class="ft-copy"><strong>Técnicos certificados F-GAS</strong> · Daikin · Toyotomi</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+tenho+interesse+nos+planos+de+manuten%C3%A7%C3%A3o" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.854L0 24l6.343-1.499A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.07-1.415l-.362-.216-3.765.89.952-3.668-.237-.377A9.818 9.818 0 1112 21.818z"/></svg>
+</a>
+
+<script>
+const hdr = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+function toggleDrawer() {
+  const d = document.getElementById('drawer');
+  const h = document.getElementById('hd-ham');
+  d.classList.toggle('open');
+  h.classList.toggle('open');
+  document.body.style.overflow = d.classList.contains('open') ? 'hidden' : '';
+}
+
+function toggleFaq(btn) {
+  const ans = btn.nextElementSibling;
+  const open = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(q => {
+    q.classList.remove('open');
+    q.nextElementSibling.classList.remove('open');
+  });
+  if (!open) {
+    btn.classList.add('open');
+    ans.classList.add('open');
+  }
+}
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.07, rootMargin: '0px 0px -20px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+document.querySelectorAll('.plans-grid .fade-up').forEach((el, i) => {
+  el.style.transitionDelay = `${i * 0.1}s`;
+});
+</script>
+</body>
+</html>

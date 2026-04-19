@@ -132,9 +132,9 @@ section  { padding:104px 0 }
 /* ─── HEADER ─────────────────────────────── */
 #header {
   position:sticky; top:0; z-index:1000; height:72px;
-  background:rgba(10,22,40,.82); backdrop-filter:blur(20px) saturate(140%);
+  background:rgba(255,255,255,.96); backdrop-filter:blur(20px) saturate(140%);
   -webkit-backdrop-filter:blur(20px) saturate(140%);
-  border-bottom:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid var(--border); box-shadow:0 1px 0 var(--border);
   transition:background var(--t), box-shadow var(--t), border-color var(--t);
 }
 #header.scrolled {
@@ -147,33 +147,37 @@ section  { padding:104px 0 }
 }
 .hd-logo { display:flex; align-items:center; gap:10px }
 .hd-gear { animation:spin 22s linear infinite }
-.hd-name  { font-size:19px; font-weight:800; color:#fff; letter-spacing:-.3px; transition:color var(--t) }
-.hd-name em { color:var(--accent); font-style:normal }
+.hd-name  { font-size:19px; font-weight:800; color:var(--navy); letter-spacing:-.3px; transition:color var(--t) }
+.hd-name em { color:var(--blue); font-style:normal }
 #header.scrolled .hd-name { color:var(--navy) }
 #header.scrolled .hd-name em { color:var(--blue) }
 
 .hd-nav { display:flex; gap:4px }
-.hd-lnk { font-size:14px; font-weight:500; color:rgba(255,255,255,.72); padding:8px 14px; border-radius:6px; transition:all var(--t); letter-spacing:-.005em }
-.hd-lnk:hover { color:#fff; background:rgba(255,255,255,.07) }
+.hd-lnk { font-size:14px; font-weight:500; color:var(--text2); padding:8px 14px; border-radius:6px; transition:all var(--t); letter-spacing:-.005em }
+.hd-lnk:hover { color:var(--navy); background:var(--bg2) }
 #header.scrolled .hd-lnk { color:var(--text2) }
 #header.scrolled .hd-lnk:hover { color:var(--navy); background:var(--bg2) }
+.hd-lnk-accent { color:#fff !important; font-weight:600; background:var(--blue); border-radius:6px }
+.hd-lnk-accent:hover { background:var(--blue-d) !important; color:#fff !important }
+#header.scrolled .hd-lnk-accent { color:#fff !important; background:var(--blue) }
+#header.scrolled .hd-lnk-accent:hover { background:var(--blue-d) !important; color:#fff !important }
 
 .hd-right { display:flex; align-items:center; gap:10px }
 .hd-phone {
   display:flex; align-items:center; gap:8px;
   font-size:14px; font-weight:600; color:#fff;
   padding:9px 16px; border-radius:var(--r); transition:all var(--t);
-  border:1px solid rgba(255,255,255,.18);
+  background:#111; border:none;
 }
-.hd-phone:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.4) }
-#header.scrolled .hd-phone { color:var(--navy); border-color:var(--border) }
-#header.scrolled .hd-phone:hover { background:var(--bg2) }
+.hd-phone:hover { background:#000; transform:translateY(-1px) }
+#header.scrolled .hd-phone { color:#fff; background:#111; border:none }
+#header.scrolled .hd-phone:hover { background:#000 }
 .hd-wa { background:var(--wa); color:#fff; font-size:14px; font-weight:600; padding:10px 18px; border-radius:var(--r); transition:all var(--t); display:inline-flex; align-items:center; gap:8px; box-shadow:0 6px 16px -4px rgba(34,197,94,.5) }
 .hd-wa:hover { background:var(--wa-d); transform:translateY(-1px) }
 
 .hd-ham { display:none; flex-direction:column; gap:5px; padding:8px; cursor:pointer }
-.hd-ham span { width:22px; height:1.5px; background:#fff; border-radius:2px; transition:all .25s }
-#header.scrolled .hd-ham span { background:var(--navy) }
+.hd-ham span { width:22px; height:1.5px; background:var(--navy); border-radius:2px; transition:all .25s }
+
 .hd-ham.open span:nth-child(1) { transform:translateY(7px) rotate(45deg) }
 .hd-ham.open span:nth-child(2) { opacity:0 }
 .hd-ham.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg) }
@@ -184,7 +188,9 @@ section  { padding:104px 0 }
   display:flex; flex-direction:column; gap:2px; overflow-y:auto;
 }
 .drawer.open { transform:none }
-.drawer .hd-lnk { color:var(--text); font-size:17px; padding:16px 0; border-bottom:1px solid var(--border); border-radius:0; display:block; width:100% }
+.drawer .hd-lnk { color:#fff; font-size:17px; padding:14px 20px; border:1.5px solid #111; border-radius:8px; display:block; width:100%; text-align:center; margin-bottom:8px; background:var(--blue) }
+.drawer .hd-lnk:hover { background:var(--blue-d) }
+.drawer .hd-lnk-accent { border-color:var(--blue) !important; color:var(--blue) !important; background:transparent !important }
 .dr-ctas { margin-top:28px; display:flex; flex-direction:column; gap:10px }
 
 /* ─── HERO ───────────────────────────────── */
@@ -668,12 +674,11 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
     </a>
 
     <nav class="hd-nav">
-      <a href="#servicos"    class="hd-lnk">Serviços</a>
-      <a href="#portfolio"   class="hd-lnk">Trabalhos</a>
-      <a href="#testemunhos" class="hd-lnk">Avaliações</a>
-      <a href="#area"        class="hd-lnk">Zona de cobertura</a>
-      <a href="#perguntas-ac" class="hd-lnk">FAQ</a>
-      <a href="#contacto"    class="hd-lnk">Contacto</a>
+      <a href="#servicos"       class="hd-lnk">Serviços</a>
+      <a href="#testemunhos"    class="hd-lnk">Avaliações</a>
+      <a href="manutencao.html" class="hd-lnk hd-lnk-accent">Manutenção</a>
+      <a href="sobre.html"      class="hd-lnk">Sobre nós</a>
+      <a href="contactos.html"  class="hd-lnk">Contacto</a>
     </nav>
 
     <div class="hd-right">
@@ -696,12 +701,11 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 
 <!-- Mobile Drawer -->
 <div class="drawer" id="drawer">
-  <a href="#servicos"     class="hd-lnk" onclick="event.preventDefault();drawerNav('servicos')">Serviços</a>
-  <a href="#portfolio"    class="hd-lnk" onclick="event.preventDefault();drawerNav('portfolio')">Trabalhos recentes</a>
-  <a href="#testemunhos"  class="hd-lnk" onclick="event.preventDefault();drawerNav('testemunhos')">Avaliações</a>
-  <a href="#area"         class="hd-lnk" onclick="event.preventDefault();drawerNav('area')">Zona de cobertura</a>
-  <a href="#perguntas-ac" class="hd-lnk" onclick="event.preventDefault();drawerNav('perguntas-ac')">Perguntas frequentes</a>
-  <a href="#contacto"     class="hd-lnk" onclick="event.preventDefault();drawerNav('contacto')">Contacto</a>
+  <a href="#servicos"       class="hd-lnk" onclick="event.preventDefault();drawerNav('servicos')">Serviços</a>
+  <a href="#testemunhos"    class="hd-lnk" onclick="event.preventDefault();drawerNav('testemunhos')">Avaliações</a>
+  <a href="manutencao.html" class="hd-lnk hd-lnk-accent">Manutenção</a>
+  <a href="sobre.html"      class="hd-lnk">Sobre nós</a>
+  <a href="contactos.html"  class="hd-lnk">Contacto</a>
   <div class="dr-ctas">
     <a href="tel:+351937058834" class="btn btn-navy btn-block btn-lg">Ligar: 937 058 834</a>
     <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
@@ -1453,6 +1457,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
         <ul>
           <li><a href="#servicos">Instalação residencial</a></li>
           <li><a href="#servicos">Reparações e avarias</a></li>
+          <li><a href="manutencao.html">Planos de manutenção</a></li>
           <li><a href="#servicos">Projetos comerciais</a></li>
         </ul>
       </div>
@@ -1461,7 +1466,6 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
         <h4>Empresa</h4>
         <ul>
           <li><a href="#area">Zona de cobertura</a></li>
-          <li><a href="#garantias">Garantias</a></li>
           <li><a href="#perguntas-ac">FAQ</a></li>
           <li><a href="sobre.html">Sobre nós</a></li>
         </ul>
@@ -1472,8 +1476,8 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
         <ul>
           <li><a href="tel:+351937058834">937 058 834</a></li>
           <li><a href="https://wa.me/351937058834" target="_blank">WhatsApp</a></li>
+          <li><a href="contactos.html">Formulário</a></li>
           <li><a href="https://www.facebook.com/AirTech.clima25" target="_blank">Facebook</a></li>
-          <li><span>Lisboa · Zona Centro</span></li>
         </ul>
       </div>
     </div>
