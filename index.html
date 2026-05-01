@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <title>AirTech — Instalação e Reparação de Ar Condicionado | Lisboa e Zona Centro</title>
 <meta name="description" content="Instalação, manutenção e reparação de ar condicionado em Lisboa e Zona Centro. Técnicos certificados F-GAS. Resposta em menos de 2 horas. Orçamento gratuito."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -45,8 +45,8 @@
 
 /* ─── RESET ──────────────────────────────── */
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
-html  { scroll-behavior:smooth }
-body  { font-family:'Inter',sans-serif; color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden; line-height:1.6; font-feature-settings:'ss01','cv11' }
+html  { scroll-behavior:smooth; overflow-x:hidden }
+body  { font-family:'Inter',sans-serif; color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.6; font-feature-settings:'ss01','cv11' }
 a     { text-decoration:none; color:inherit }
 img   { display:block; max-width:100% }
 ul    { list-style:none }
@@ -610,7 +610,10 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 /* ─── WEATHER WIDGET ─────────────────────── */
 @keyframes spin-slow { to { transform:rotate(360deg) } }
 .wx-wrap {
-  position:fixed; bottom:28px; right:24px; z-index:998;
+  position:fixed;
+  bottom:max(28px, env(safe-area-inset-bottom, 0px) + 16px);
+  right:max(24px, env(safe-area-inset-right, 0px) + 12px);
+  z-index:998;
   display:flex; flex-direction:column; align-items:center; gap:0;
   cursor:pointer; user-select:none;
 }
@@ -647,7 +650,10 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 .wx-wrap.active .wx-cold      { display:block }
 .wx-wrap.active .wx-temp      { display:none }
 @media(max-width:640px){
-  .wx-wrap { bottom:20px; right:16px }
+  .wx-wrap {
+    bottom:max(20px, env(safe-area-inset-bottom, 0px) + 12px);
+    right:max(16px, env(safe-area-inset-right, 0px) + 10px);
+  }
   .wx-bubble { bottom:31px; right:84px }
 }
 /* — scroll bubble — */
