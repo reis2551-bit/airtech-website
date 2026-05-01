@@ -143,8 +143,8 @@ section  { padding:104px 0 }
 }
 .hd-logo { display:flex; align-items:center; gap:10px }
 .hd-gear { flex-shrink:0 }
-.logo-img   { filter: invert(25%) sepia(95%) saturate(1200%) hue-rotate(213deg) brightness(105%) contrast(95%) }
-.logo-img-w { filter: brightness(0) invert(1) }
+.logo-img   { background:#4169E1; -webkit-mask:url(imagens/LOGO.png) no-repeat center/contain; mask:url(imagens/LOGO.png) no-repeat center/contain }
+.logo-img-w { background:#fff; -webkit-mask:url(imagens/LOGO.png) no-repeat center/contain; mask:url(imagens/LOGO.png) no-repeat center/contain }
 .hd-name  { font-size:19px; font-weight:800; color:var(--navy); letter-spacing:-.3px; transition:color var(--t) }
 .hd-name em { color:var(--blue); font-style:normal }
 
@@ -431,7 +431,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 <header id="header">
   <div class="hd-wrap">
     <a href="website.html" class="hd-logo">
-      <img src="imagens/LOGO.png" class="hd-gear logo-img" height="36" alt="AirTech logo">
+      <div class="hd-gear logo-img" style="width:55px;height:36px" role="img" aria-label="AirTech logo"></div>
       <span class="hd-name">Air<em>Tech</em></span>
     </a>
 
@@ -465,7 +465,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 <div class="drawer" id="drawer">
   <div class="drawer-hd">
     <a href="website.html#hero" class="hd-logo">
-      <img src="imagens/LOGO.png" class="hd-gear logo-img" height="32" alt="AirTech logo">
+      <div class="hd-gear logo-img" style="width:50px;height:32px" role="img" aria-label="AirTech logo"></div>
       <span class="hd-name">Air<em>Tech</em></span>
     </a>
     <button class="drawer-close" onclick="toggleDrawer()" aria-label="Fechar menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
@@ -848,7 +848,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
     <div class="ft-grid">
       <div>
         <div class="ft-logo-row">
-          <img src="imagens/LOGO.png" class="logo-img-w" height="25" alt="AirTech logo">
+          <div class="logo-img-w" style="width:38px;height:25px" role="img" aria-label="AirTech logo"></div>
           <span class="ft-nm">Air<em>Tech</em></span>
         </div>
         <p class="ft-desc">Especialistas em ar condicionado residencial em Lisboa e Zona Centro. Técnicos certificados F-GAS, resposta rápida e preço transparente.</p>
