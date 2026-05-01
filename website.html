@@ -671,7 +671,23 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 @media(max-width:640px){
   .wx-wrap { bottom:20px; right:16px }
   .wx-card { right:12px; bottom:96px }
+  .wx-bubble { bottom:31px; right:84px }
 }
+/* — scroll bubble — */
+.wx-bubble {
+  position:fixed; bottom:39px; right:92px; z-index:997;
+  background:#fff; border-radius:14px; padding:9px 14px;
+  font-size:13px; font-weight:700; color:#1E40AF;
+  box-shadow:0 4px 20px rgba(10,22,40,.18);
+  white-space:nowrap; pointer-events:none;
+  opacity:0; transform:translateX(10px);
+  transition:opacity .35s ease, transform .35s ease;
+}
+.wx-bubble::after {
+  content:''; position:absolute; right:-9px; top:50%; margin-top:-7px;
+  border:7px solid transparent; border-left:9px solid #fff; border-right:0;
+}
+.wx-bubble.show { opacity:1; transform:translateX(0) }
 /* ─── RESPONSIVE ─────────────────────────── */
 
 /* ─── RESPONSIVE ─────────────────────────── */
@@ -727,6 +743,9 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 
 <!-- ════════ SNOWFLAKE INTRO ════════ -->
 <canvas id="snow-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;transition:opacity 1s ease"></canvas>
+
+<!-- ════════ SCROLL BUBBLE ════════ -->
+<div class="wx-bubble" id="wx-bubble">❄️ Com AirTech</div>
 
 <!-- ════════ WEATHER WIDGET ════════ -->
 <div class="wx-wrap" id="wx-wrap" aria-label="Temperatura em Lisboa">
@@ -1824,6 +1843,22 @@ function handleForm(e) {
 
   document.addEventListener('click', function() {
     card.classList.remove('open');
+  });
+})();
+
+/* ── Scroll bubble ── */
+(function(){
+  var bubble = document.getElementById('wx-bubble');
+  var seen = false, t;
+  window.addEventListener('scroll', function(){
+    if (seen || window.scrollY < 100) return;
+    seen = true;
+    bubble.classList.add('show');
+    t = setTimeout(function(){ bubble.classList.remove('show'); }, 4000);
+  }, {passive:true});
+  document.getElementById('wx-wrap').addEventListener('click', function(){
+    bubble.classList.remove('show');
+    clearTimeout(t);
   });
 })();
 
