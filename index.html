@@ -646,35 +646,8 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 .wx-wrap.active .wx-snow-icon { display:block }
 .wx-wrap.active .wx-cold      { display:block }
 .wx-wrap.active .wx-temp      { display:none }
-/* — card — */
-.wx-card {
-  position:fixed; bottom:100px; right:20px; z-index:999;
-  background:#fff; border-radius:14px; padding:16px 20px;
-  box-shadow:0 8px 32px -4px rgba(10,22,40,.18), 0 1px 4px rgba(10,22,40,.08);
-  min-width:170px; opacity:0; pointer-events:none;
-  transform:translateY(6px) scale(.97);
-  transition:opacity .2s ease, transform .2s ease;
-}
-.wx-card.open { opacity:1; pointer-events:auto; transform:none }
-.wx-card-title { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#667085; margin-bottom:10px }
-.wx-row { display:flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#0F172A; margin-bottom:6px }
-.wx-row:last-child { margin-bottom:0 }
-.wx-row span { font-size:13px; font-weight:400; color:#667085 }
-.wx-airtech-btn {
-  width:100%; margin-top:12px; padding:9px 0;
-  background:linear-gradient(135deg,#4169E1,#1E40AF);
-  color:#fff; font-size:14px; font-weight:700;
-  border:none; border-radius:8px; cursor:pointer;
-  letter-spacing:-.2px; transition:opacity .2s;
-}
-.wx-airtech-btn:hover { opacity:.85 }
-.wx-wrap.active .wx-airtech-btn {
-  background:linear-gradient(135deg,#FFB830,#FF8C00);
-  box-shadow:0 4px 14px -2px rgba(255,140,0,.45);
-}
 @media(max-width:640px){
   .wx-wrap { bottom:20px; right:16px }
-  .wx-card { right:12px; bottom:96px }
   .wx-bubble { bottom:31px; right:84px }
 }
 /* — scroll bubble — */
@@ -753,15 +726,6 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 
 <!-- ════════ WEATHER WIDGET ════════ -->
 <div class="wx-wrap" id="wx-wrap" aria-label="Temperatura em Lisboa">
-  <div class="wx-card" id="wx-card">
-    <div class="wx-weather">
-      <div class="wx-card-title">Lisboa · Hoje</div>
-      <div class="wx-row">🌡️ <strong id="wx-max">—°</strong> <span>máxima</span></div>
-      <div class="wx-row">❄️ <strong id="wx-min">—°</strong> <span>mínima</span></div>
-      <div class="wx-row" id="wx-cond">☁️ <span>A carregar…</span></div>
-    </div>
-    <button class="wx-airtech-btn" id="wx-airtech-btn">❄️ Com AirTech</button>
-  </div>
   <div class="wx-btn">
     <svg class="wx-sun" width="32" height="32" viewBox="0 0 32 32" fill="none">
       <circle cx="16" cy="16" r="7" fill="#FFF9C4" stroke="#FFE082" stroke-width="1.5"/>
@@ -1811,42 +1775,17 @@ function handleForm(e) {
     const cond = COND[code] || COND[Math.floor(code/10)*10] || '🌡️ Lisboa';
 
     document.getElementById('wx-temp').textContent = tMax + '°';
-    document.getElementById('wx-max').textContent  = tMax + '°';
-    document.getElementById('wx-min').textContent  = tMin + '°';
-    document.getElementById('wx-cond').innerHTML   = cond;
   }).catch(function() {
     document.getElementById('wx-temp').textContent = '?°';
   });
 
   const wrap   = document.getElementById('wx-wrap');
-  const card   = document.getElementById('wx-card');
   const sunBtn = wrap.querySelector('.wx-btn');
-  const aBtn   = document.getElementById('wx-airtech-btn');
 
   sunBtn.addEventListener('click', function(e) {
     e.stopPropagation();
-    card.classList.toggle('open');
-  });
-
-  card.addEventListener('click', function(e) {
-    e.stopPropagation();
-  });
-
-  aBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    if (wrap.classList.contains('active')) {
-      wrap.classList.remove('active');
-      aBtn.textContent = '❄️ Com AirTech';
-    } else {
-      wrap.classList.add('active');
-      aBtn.textContent = '☀️ Sem AirTech';
-      startSnow();
-    }
-    card.classList.remove('open');
-  });
-
-  document.addEventListener('click', function() {
-    card.classList.remove('open');
+    const isActive = wrap.classList.toggle('active');
+    if (isActive) startSnow();
   });
 })();
 
