@@ -1666,13 +1666,11 @@ function handleForm(e) {
   }, 700);
 }
 
-/* ── Snowflake + wind intro ── */
+/* ── Snowflake intro ── */
 (function() {
   const canvas = document.getElementById('snow-canvas');
   const ctx    = canvas.getContext('2d');
   let W, H, raf;
-  let phase = 'snow'; // 'snow' | 'wind'
-  let windT0 = 0;
 
   function resize() {
     W = canvas.width  = window.innerWidth;
@@ -1681,120 +1679,50 @@ function handleForm(e) {
 
   function makeFlake() {
     return {
-      x:       Math.random() * W,
-      y:       Math.random() * -H,
-      size:    8  + Math.random() * 10,
-      speed:   1.2 + Math.random() * 2.2,
-      drift:   (Math.random() - 0.5) * 0.8,
-      angle:   Math.random() * Math.PI * 2,
-      spin:    (Math.random() - 0.5) * 0.04,
-      alpha:   0.6 + Math.random() * 0.25,
-      windSpd: 6   + Math.random() * 8,
+      x:     Math.random() * W,
+      y:     Math.random() * -H,
+      size:  8  + Math.random() * 10,
+      speed: 1.2 + Math.random() * 2.2,
+      drift: (Math.random() - 0.5) * 0.8,
+      angle: Math.random() * Math.PI * 2,
+      spin:  (Math.random() - 0.5) * 0.04,
+      alpha: 0.6 + Math.random() * 0.25,
     };
   }
 
-  resize();
-  const flakes = Array.from({ length: 140 }, makeFlake);
-
-  /* 9 wind gust ribbons — each sweeps L→R at a different height */
-  const GUSTS = [
-    { yFrac:0.08, delay:0.00, amp:28, thick:10, a:0.50 },
-    { yFrac:0.20, delay:0.10, amp:42, thick:16, a:0.65 },
-    { yFrac:0.32, delay:0.04, amp:30, thick:11, a:0.60 },
-    { yFrac:0.44, delay:0.18, amp:50, thick:18, a:0.55 },
-    { yFrac:0.55, delay:0.08, amp:35, thick:13, a:0.65 },
-    { yFrac:0.65, delay:0.22, amp:24, thick: 9, a:0.55 },
-    { yFrac:0.74, delay:0.13, amp:46, thick:16, a:0.60 },
-    { yFrac:0.84, delay:0.05, amp:30, thick:11, a:0.50 },
-    { yFrac:0.93, delay:0.17, amp:20, thick: 8, a:0.45 },
-  ];
-
-  function drawFlakes(windFactor) {
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
     flakes.forEach(f => {
       f.angle += f.spin;
-      f.y     += f.speed  + windFactor * 1.5;
-      f.x     += f.drift  + Math.sin(f.angle) * 0.5 + windFactor * f.windSpd;
-
-      const offscreen = f.y > H + 20 || f.x > W + 60;
-      if (offscreen) {
-        if (windFactor > 0.2) { f.alpha = 0; return; }
-        f.y = -20; f.x = Math.random() * W;
-      }
-      if (f.alpha <= 0) return;
+      f.y     += f.speed;
+      f.x     += f.drift + Math.sin(f.angle) * 0.5;
+      if (f.y > H + 20) { f.y = -20; f.x = Math.random() * W; }
 
       ctx.save();
-      ctx.globalAlpha    = f.alpha * (1 - windFactor * 0.8);
-      ctx.shadowColor    = 'rgba(255,255,255,0.9)';
-      ctx.shadowBlur     = 8;
-      ctx.fillStyle      = 'rgba(255,255,255,0.85)';
-      ctx.font           = 'bold ' + f.size + 'px serif';
-      ctx.textAlign      = 'center';
-      ctx.textBaseline   = 'middle';
+      ctx.globalAlpha  = f.alpha;
+      ctx.shadowColor  = 'rgba(255,255,255,0.9)';
+      ctx.shadowBlur   = 8;
+      ctx.fillStyle    = 'rgba(255,255,255,0.85)';
+      ctx.font         = 'bold ' + f.size + 'px serif';
+      ctx.textAlign    = 'center';
+      ctx.textBaseline = 'middle';
       ctx.translate(f.x, f.y);
       ctx.rotate(f.angle);
       ctx.fillText('❅', 0, 0);
       ctx.restore();
     });
-  }
-
-  function drawGust(g, t) {
-    const p = Math.max(0, (t - g.delay) / (1 - g.delay));
-    if (p <= 0) return;
-
-    const leadX  = -100 + p * (W + 300);
-    const trailX = leadX - W * 0.45;
-    const fadeIn  = Math.min(1, (leadX  + 100) / (W * 0.25));
-    const fadeOut = Math.min(1, (W + 100 - trailX) / (W * 0.25));
-    const alpha   = g.a * Math.min(fadeIn, fadeOut);
-    if (alpha <= 0.01) return;
-
-    const cy    = H * g.yFrac;
-    const steps = 80;
-
-    ctx.save();
-    ctx.beginPath();
-    for (let i = 0; i <= steps; i++) {
-      const px = trailX + (i / steps) * (leadX - trailX);
-      const py = cy + Math.sin((i / steps) * Math.PI * 5) * g.amp;
-      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
-    }
-    ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-    ctx.lineWidth   = g.thick;
-    ctx.lineCap     = 'round';
-    ctx.lineJoin    = 'round';
-    ctx.shadowColor = 'rgba(180,220,255,0.7)';
-    ctx.shadowBlur  = 22;
-    ctx.stroke();
-    ctx.restore();
-  }
-
-  function loop(ts) {
-    ctx.clearRect(0, 0, W, H);
-
-    if (phase === 'snow') {
-      drawFlakes(0);
-    } else {
-      const elapsed     = (ts - windT0) / 1000; // seconds since wind started
-      const windFactor  = Math.min(elapsed / 0.6, 1);
-      drawFlakes(windFactor);
-      const gustT = Math.min(elapsed / 1.6, 1);
-      GUSTS.forEach(g => drawGust(g, gustT));
-
-      if (elapsed >= 1.6) {
-        canvas.style.opacity = '0';
-        setTimeout(function() { cancelAnimationFrame(raf); canvas.remove(); }, 1000);
-        return;
-      }
-    }
-
     raf = requestAnimationFrame(loop);
   }
 
+  resize();
+  const flakes = Array.from({ length: 140 }, makeFlake);
   window.addEventListener('resize', resize);
   raf = requestAnimationFrame(loop);
 
-  /* Switch to wind phase after 6 s */
-  setTimeout(function() { phase = 'wind'; windT0 = performance.now(); }, 6000);
+  setTimeout(function() {
+    canvas.style.opacity = '0';
+    setTimeout(function() { cancelAnimationFrame(raf); canvas.remove(); }, 1000);
+  }, 6000);
 })();
 </script>
 </body>
