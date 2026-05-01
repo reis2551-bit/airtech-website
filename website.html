@@ -615,16 +615,31 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
   background:linear-gradient(135deg,#FFB830,#FF8C00);
   box-shadow:0 6px 22px -4px rgba(255,140,0,.55);
   display:flex; align-items:center; justify-content:center;
-  transition:transform .2s ease, box-shadow .2s ease;
+  transition:background .35s ease, box-shadow .35s ease, transform .2s ease;
 }
-.wx-wrap:hover .wx-btn { transform:scale(1.08); box-shadow:0 10px 30px -4px rgba(255,140,0,.7) }
-.wx-sun { animation:spin-slow 10s linear infinite }
+.wx-wrap:hover .wx-btn { transform:scale(1.08) }
+.wx-sun { animation:spin-slow 10s linear infinite; transition:opacity .25s }
+.wx-cold {
+  display:none; position:absolute;
+  font-size:16px; font-weight:800; color:#fff; letter-spacing:-.5px;
+  text-shadow:0 1px 6px rgba(0,0,0,.25);
+}
 .wx-temp {
   font-size:13px; font-weight:700; color:#fff; margin-top:5px;
   text-shadow:0 1px 4px rgba(0,0,0,.35); letter-spacing:-.3px;
+  transition:opacity .25s;
 }
+/* — active (blue) state — */
+.wx-wrap.active .wx-btn {
+  background:linear-gradient(135deg,#4169E1,#1E40AF);
+  box-shadow:0 6px 22px -4px rgba(65,105,225,.6);
+}
+.wx-wrap.active .wx-sun  { opacity:0; pointer-events:none }
+.wx-wrap.active .wx-cold { display:block }
+.wx-wrap.active .wx-temp { opacity:0 }
+/* — card — */
 .wx-card {
-  position:fixed; bottom:168px; right:20px; z-index:999;
+  position:fixed; bottom:100px; right:20px; z-index:999;
   background:#fff; border-radius:14px; padding:16px 20px;
   box-shadow:0 8px 32px -4px rgba(10,22,40,.18), 0 1px 4px rgba(10,22,40,.08);
   min-width:170px; opacity:0; pointer-events:none;
@@ -636,9 +651,16 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 .wx-row { display:flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#0F172A; margin-bottom:6px }
 .wx-row:last-child { margin-bottom:0 }
 .wx-row span { font-size:13px; font-weight:400; color:#667085 }
+.wx-airtech { display:none; text-align:center }
+.wx-airtech-badge {
+  font-size:17px; font-weight:800; color:#1E40AF; letter-spacing:-.3px; display:block; margin-bottom:4px;
+}
+.wx-airtech-sub { font-size:12px; color:#667085 }
+.wx-wrap.active .wx-weather { display:none }
+.wx-wrap.active .wx-airtech { display:block }
 @media(max-width:640px){
   .wx-wrap { bottom:20px; right:16px }
-  .wx-card { right:12px; bottom:110px }
+  .wx-card { right:12px; bottom:96px }
 }
 /* ─── RESPONSIVE ─────────────────────────── */
 
@@ -699,10 +721,16 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 <!-- ════════ WEATHER WIDGET ════════ -->
 <div class="wx-wrap" id="wx-wrap" aria-label="Temperatura em Lisboa">
   <div class="wx-card" id="wx-card">
-    <div class="wx-card-title">Lisboa · Hoje</div>
-    <div class="wx-row">🌡️ <strong id="wx-max">—°</strong> <span>máxima</span></div>
-    <div class="wx-row">❄️ <strong id="wx-min">—°</strong> <span>mínima</span></div>
-    <div class="wx-row" id="wx-cond">☁️ <span>A carregar…</span></div>
+    <div class="wx-weather">
+      <div class="wx-card-title">Lisboa · Hoje</div>
+      <div class="wx-row">🌡️ <strong id="wx-max">—°</strong> <span>máxima</span></div>
+      <div class="wx-row">❄️ <strong id="wx-min">—°</strong> <span>mínima</span></div>
+      <div class="wx-row" id="wx-cond">☁️ <span>A carregar…</span></div>
+    </div>
+    <div class="wx-airtech">
+      <span class="wx-airtech-badge">❄️ Com AirTech</span>
+      <span class="wx-airtech-sub">Frescura todo o ano</span>
+    </div>
   </div>
   <div class="wx-btn">
     <svg class="wx-sun" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -718,6 +746,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
         <line x1="9.17"  y1="22.83" x2="6.34"  y2="25.66"/>
       </g>
     </svg>
+    <span class="wx-cold">18°</span>
   </div>
   <div class="wx-temp" id="wx-temp">—°</div>
 </div>
@@ -1737,28 +1766,38 @@ function handleForm(e) {
 
   const wrap = document.getElementById('wx-wrap');
   const card = document.getElementById('wx-card');
+
   wrap.addEventListener('click', function(e) {
     e.stopPropagation();
-    card.classList.toggle('open');
+    const isActive = wrap.classList.toggle('active');
+    card.classList.toggle('open', isActive);
+    if (isActive) startSnow();
   });
-  document.addEventListener('click', function() { card.classList.remove('open'); });
+  document.addEventListener('click', function() {
+    wrap.classList.remove('active');
+    card.classList.remove('open');
+  });
 })();
 
-/* ── Snowflake intro ── */
-(function() {
-  const canvas = document.getElementById('snow-canvas');
-  const ctx    = canvas.getContext('2d');
-  let W, H, raf;
+/* ── Snowflake (intro + re-triggerable) ── */
+function startSnow() {
+  // Remove any existing canvas first
+  var old = document.getElementById('snow-canvas');
+  if (old) { old.remove(); }
 
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
+  var cv  = document.createElement('canvas');
+  cv.id   = 'snow-canvas';
+  cv.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;transition:opacity 1s ease';
+  document.body.appendChild(cv);
+
+  var ctx = cv.getContext('2d');
+  var W, H, raf;
+
+  function resize() { W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
 
   function makeFlake() {
     return {
-      x:     Math.random() * W,
-      y:     Math.random() * -H,
+      x: Math.random() * W, y: Math.random() * -H,
       size:  8  + Math.random() * 10,
       speed: 1.2 + Math.random() * 2.2,
       drift: (Math.random() - 0.5) * 0.8,
@@ -1768,14 +1807,17 @@ function handleForm(e) {
     };
   }
 
+  resize();
+  var flakes = Array.from({ length: 140 }, makeFlake);
+  window.addEventListener('resize', resize);
+
   function loop() {
     ctx.clearRect(0, 0, W, H);
-    flakes.forEach(f => {
+    flakes.forEach(function(f) {
       f.angle += f.spin;
       f.y     += f.speed;
       f.x     += f.drift + Math.sin(f.angle) * 0.5;
       if (f.y > H + 20) { f.y = -20; f.x = Math.random() * W; }
-
       ctx.save();
       ctx.globalAlpha  = f.alpha;
       ctx.shadowColor  = 'rgba(255,255,255,0.9)';
@@ -1791,17 +1833,14 @@ function handleForm(e) {
     });
     raf = requestAnimationFrame(loop);
   }
-
-  resize();
-  const flakes = Array.from({ length: 140 }, makeFlake);
-  window.addEventListener('resize', resize);
   raf = requestAnimationFrame(loop);
 
   setTimeout(function() {
-    canvas.style.opacity = '0';
-    setTimeout(function() { cancelAnimationFrame(raf); canvas.remove(); }, 1000);
+    cv.style.opacity = '0';
+    setTimeout(function() { cancelAnimationFrame(raf); cv.remove(); }, 1000);
   }, 6000);
-})();
+}
+startSnow();
 </script>
 </body>
 </html>
