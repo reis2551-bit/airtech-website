@@ -603,6 +603,43 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 .ft-copy { font-size:12px; color:rgba(255,255,255,.3); letter-spacing:-.005em }
 .ft-copy strong { color:rgba(255,255,255,.55); font-weight:500 }
 
+/* ─── WEATHER WIDGET ─────────────────────── */
+@keyframes spin-slow { to { transform:rotate(360deg) } }
+.wx-wrap {
+  position:fixed; bottom:96px; right:24px; z-index:998;
+  display:flex; flex-direction:column; align-items:center; gap:0;
+  cursor:pointer; user-select:none;
+}
+.wx-btn {
+  width:56px; height:56px; border-radius:50%;
+  background:linear-gradient(135deg,#FFB830,#FF8C00);
+  box-shadow:0 6px 22px -4px rgba(255,140,0,.55);
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.wx-wrap:hover .wx-btn { transform:scale(1.08); box-shadow:0 10px 30px -4px rgba(255,140,0,.7) }
+.wx-sun { animation:spin-slow 10s linear infinite }
+.wx-temp {
+  font-size:13px; font-weight:700; color:#fff; margin-top:5px;
+  text-shadow:0 1px 4px rgba(0,0,0,.35); letter-spacing:-.3px;
+}
+.wx-card {
+  position:fixed; bottom:168px; right:20px; z-index:999;
+  background:#fff; border-radius:14px; padding:16px 20px;
+  box-shadow:0 8px 32px -4px rgba(10,22,40,.18), 0 1px 4px rgba(10,22,40,.08);
+  min-width:170px; opacity:0; pointer-events:none;
+  transform:translateY(6px) scale(.97);
+  transition:opacity .2s ease, transform .2s ease;
+}
+.wx-card.open { opacity:1; pointer-events:auto; transform:none }
+.wx-card-title { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#667085; margin-bottom:10px }
+.wx-row { display:flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#0F172A; margin-bottom:6px }
+.wx-row:last-child { margin-bottom:0 }
+.wx-row span { font-size:13px; font-weight:400; color:#667085 }
+@media(max-width:640px){
+  .wx-wrap { bottom:84px; right:16px }
+  .wx-card { right:12px; bottom:152px }
+}
 /* ─── WHATSAPP FLOAT ─────────────────────── */
 .wa-float {
   position:fixed; bottom:24px; right:24px; z-index:997;
@@ -669,6 +706,32 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 
 <!-- ════════ SNOWFLAKE INTRO ════════ -->
 <canvas id="snow-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;transition:opacity 1s ease"></canvas>
+
+<!-- ════════ WEATHER WIDGET ════════ -->
+<div class="wx-wrap" id="wx-wrap" aria-label="Temperatura em Lisboa">
+  <div class="wx-card" id="wx-card">
+    <div class="wx-card-title">Lisboa · Hoje</div>
+    <div class="wx-row">🌡️ <strong id="wx-max">—°</strong> <span>máxima</span></div>
+    <div class="wx-row">❄️ <strong id="wx-min">—°</strong> <span>mínima</span></div>
+    <div class="wx-row" id="wx-cond">☁️ <span>A carregar…</span></div>
+  </div>
+  <div class="wx-btn">
+    <svg class="wx-sun" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="7" fill="#FFF9C4" stroke="#FFE082" stroke-width="1.5"/>
+      <g stroke="#FFF176" stroke-width="2" stroke-linecap="round">
+        <line x1="16" y1="2"  x2="16" y2="6"/>
+        <line x1="16" y1="26" x2="16" y2="30"/>
+        <line x1="2"  y1="16" x2="6"  y2="16"/>
+        <line x1="26" y1="16" x2="30" y2="16"/>
+        <line x1="6.34"  y1="6.34"  x2="9.17"  y2="9.17"/>
+        <line x1="22.83" y1="22.83" x2="25.66" y2="25.66"/>
+        <line x1="25.66" y1="6.34"  x2="22.83" y2="9.17"/>
+        <line x1="9.17"  y1="22.83" x2="6.34"  y2="25.66"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wx-temp" id="wx-temp">—°</div>
+</div>
 
 <!-- ════════ WHATSAPP FLOAT ════════ -->
 <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
@@ -1665,6 +1728,40 @@ function handleForm(e) {
     );
   }, 700);
 }
+
+/* ── Weather widget ── */
+(function() {
+  const API = 'https://api.open-meteo.com/v1/forecast?latitude=38.72&longitude=-9.14&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=Europe/Lisbon&forecast_days=1';
+  const COND = {
+    0:'☀️ Céu limpo', 1:'🌤️ Principalmente limpo', 2:'⛅ Parcialmente nublado', 3:'☁️ Nublado',
+    45:'🌫️ Nevoeiro', 48:'🌫️ Nevoeiro gelado', 51:'🌦️ Chuvisco leve', 53:'🌦️ Chuvisco', 55:'🌧️ Chuvisco forte',
+    61:'🌧️ Chuva leve', 63:'🌧️ Chuva', 65:'🌧️ Chuva forte', 71:'🌨️ Neve leve', 73:'🌨️ Neve', 75:'🌨️ Neve forte',
+    80:'🌦️ Aguaceiros', 81:'🌧️ Aguaceiros', 82:'⛈️ Aguaceiros fortes', 95:'⛈️ Trovoada', 99:'⛈️ Trovoada com granizo'
+  };
+
+  fetch(API).then(r => r.json()).then(data => {
+    const d    = data.daily;
+    const tMax = Math.round(d.temperature_2m_max[0]);
+    const tMin = Math.round(d.temperature_2m_min[0]);
+    const code = d.weathercode[0];
+    const cond = COND[code] || COND[Math.floor(code/10)*10] || '🌡️ Lisboa';
+
+    document.getElementById('wx-temp').textContent = tMax + '°';
+    document.getElementById('wx-max').textContent  = tMax + '°';
+    document.getElementById('wx-min').textContent  = tMin + '°';
+    document.getElementById('wx-cond').innerHTML   = cond;
+  }).catch(function() {
+    document.getElementById('wx-temp').textContent = '?°';
+  });
+
+  const wrap = document.getElementById('wx-wrap');
+  const card = document.getElementById('wx-card');
+  wrap.addEventListener('click', function(e) {
+    e.stopPropagation();
+    card.classList.toggle('open');
+  });
+  document.addEventListener('click', function() { card.classList.remove('open'); });
+})();
 
 /* ── Snowflake intro ── */
 (function() {
