@@ -619,7 +619,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 }
 .wx-wrap:hover .wx-btn { transform:scale(1.08) }
 .wx-sun { animation:spin-slow 10s linear infinite; transition:opacity .25s }
-.wx-snow-icon { display:none; animation:spin-slow 6s linear infinite }
+.wx-snow-icon { display:none }
 .wx-cold {
   display:none; font-size:13px; font-weight:700; color:#fff; margin-top:5px;
   text-shadow:0 1px 4px rgba(0,0,0,.35); letter-spacing:-.3px;
@@ -746,25 +746,28 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
       </g>
     </svg>
     <svg class="wx-snow-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
-      <g stroke="white" stroke-width="2.5" stroke-linecap="round">
-        <line x1="14" y1="2"  x2="14" y2="26"/>
-        <line x1="2.5" y1="8" x2="25.5" y2="20"/>
-        <line x1="25.5" y1="8" x2="2.5" y2="20"/>
+      <!-- 3 main arms -->
+      <g stroke="white" stroke-width="2" stroke-linecap="round">
+        <line x1="14"   y1="3"   x2="14"   y2="25"/>
+        <line x1="23.5" y1="8.5" x2="4.5"  y2="19.5"/>
+        <line x1="4.5"  y1="8.5" x2="23.5" y2="19.5"/>
       </g>
-      <g stroke="rgba(255,255,255,.75)" stroke-width="1.5" stroke-linecap="round">
-        <line x1="14" y1="5.5" x2="11" y2="8.5"/>
-        <line x1="14" y1="5.5" x2="17" y2="8.5"/>
-        <line x1="14" y1="22.5" x2="11" y2="19.5"/>
-        <line x1="14" y1="22.5" x2="17" y2="19.5"/>
-        <line x1="21.5" y1="9.5" x2="18.5" y2="10.5"/>
-        <line x1="21.5" y1="9.5" x2="20.5" y2="12.5"/>
-        <line x1="6.5" y1="18.5" x2="9.5" y2="17.5"/>
-        <line x1="6.5" y1="18.5" x2="7.5" y2="15.5"/>
-        <line x1="6.5" y1="9.5" x2="9.5" y2="10.5"/>
-        <line x1="6.5" y1="9.5" x2="7.5" y2="12.5"/>
-        <line x1="21.5" y1="18.5" x2="18.5" y2="17.5"/>
-        <line x1="21.5" y1="18.5" x2="20.5" y2="15.5"/>
+      <!-- branches (Y forks at 60% of each arm) -->
+      <g stroke="white" stroke-width="1.5" stroke-linecap="round">
+        <line x1="14"   y1="7.4"  x2="11.4" y2="5.9"/>
+        <line x1="14"   y1="7.4"  x2="16.6" y2="5.9"/>
+        <line x1="14"   y1="20.6" x2="11.4" y2="22.1"/>
+        <line x1="14"   y1="20.6" x2="16.6" y2="22.1"/>
+        <line x1="19.7" y1="10.7" x2="22.3" y2="12.2"/>
+        <line x1="19.7" y1="10.7" x2="19.7" y2="7.7"/>
+        <line x1="8.3"  y1="17.3" x2="5.7"  y2="15.8"/>
+        <line x1="8.3"  y1="17.3" x2="8.3"  y2="20.3"/>
+        <line x1="8.3"  y1="10.7" x2="8.3"  y2="7.7"/>
+        <line x1="8.3"  y1="10.7" x2="5.7"  y2="12.2"/>
+        <line x1="19.7" y1="17.3" x2="19.7" y2="20.3"/>
+        <line x1="19.7" y1="17.3" x2="22.3" y2="15.8"/>
       </g>
+      <circle cx="14" cy="14" r="2" fill="white"/>
     </svg>
   </div>
   <div class="wx-temp" id="wx-temp">—°</div>
