@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <title>AirTech — Instalação e Reparação de Ar Condicionado | Lisboa e Zona Centro</title>
 <meta name="description" content="Instalação, manutenção e reparação de ar condicionado em Lisboa e Zona Centro. Técnicos certificados F-GAS. Resposta em menos de 2 horas. Orçamento gratuito."/>
+<meta property="og:type"        content="website"/>
+<meta property="og:url"         content="https://reis2551-bit.github.io/airtech-website/"/>
+<meta property="og:title"       content="AirTech — Instalação e Reparação de Ar Condicionado | Lisboa e Zona Centro"/>
+<meta property="og:description" content="Instalação, manutenção e reparação de ar condicionado em Lisboa e Zona Centro. Técnicos certificados F-GAS. Resposta em menos de 2 horas. Orçamento gratuito."/>
+<meta property="og:image"       content="https://reis2551-bit.github.io/airtech-website/imagens/fundo-hero-3.webp"/>
+<meta name="twitter:card"        content="summary_large_image"/>
+<meta name="twitter:title"       content="AirTech — Instalação e Reparação de Ar Condicionado"/>
+<meta name="twitter:description" content="Técnicos certificados F-GAS. Resposta em menos de 2 horas. Orçamento gratuito."/>
+<meta name="twitter:image"       content="https://reis2551-bit.github.io/airtech-website/imagens/fundo-hero-3.webp"/>
+<link rel="canonical"            href="https://reis2551-bit.github.io/airtech-website/"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -726,6 +736,33 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
   .hero-form-card { padding:24px }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  "name": "AirTech",
+  "description": "Instalação, manutenção e reparação de ar condicionado em Lisboa e Zona Centro.",
+  "url": "https://reis2551-bit.github.io/airtech-website/",
+  "telephone": "+351937058834",
+  "email": "info@airtech.pt",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Praça Mota Veiga, Olivais",
+    "addressLocality": "Lisboa",
+    "addressRegion": "Lisboa",
+    "addressCountry": "PT"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 38.72,
+    "longitude": -9.14
+  },
+  "areaServed": ["Lisboa", "Setúbal", "Santarém", "Leiria", "Coimbra"],
+  "sameAs": ["https://www.facebook.com/AirTech.clima25"],
+  "priceRange": "€€",
+  "openingHours": "Mo-Sa 08:00-20:00"
+}
+</script>
 </head>
 <body>
 
@@ -924,17 +961,17 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
       <form id="heroForm" onsubmit="handleHeroForm(event)">
         <div class="hfc-row">
           <div class="hfc-grp">
-            <label>Nome</label>
-            <input type="text" placeholder="O seu nome" required/>
+            <label for="h-nome">Nome</label>
+            <input id="h-nome" name="nome" type="text" placeholder="O seu nome" required/>
           </div>
           <div class="hfc-grp">
-            <label>Telefone</label>
-            <input type="tel" placeholder="9XX XXX XXX" required/>
+            <label for="h-tel">Telefone</label>
+            <input id="h-tel" name="tel" type="tel" placeholder="9XX XXX XXX" pattern="[0-9]{9}" title="Introduza 9 dígitos sem espaços" required/>
           </div>
         </div>
         <div class="hfc-grp">
-          <label>Serviço</label>
-          <select required>
+          <label for="h-servico">Serviço</label>
+          <select id="h-servico" name="servico" required>
             <option value="">Selecione o tipo de serviço</option>
             <option>Instalação residencial</option>
             <option>Reparação / avaria</option>
@@ -944,8 +981,8 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
           </select>
         </div>
         <div class="hfc-grp">
-          <label>Código postal</label>
-          <input type="text" placeholder="0000-000" required/>
+          <label for="h-cp">Código postal</label>
+          <input id="h-cp" name="cp" type="text" placeholder="0000-000" pattern="[0-9]{4}-[0-9]{3}" title="Formato: 0000-000" required/>
         </div>
         <button type="submit" class="btn btn-wa btn-block hfc-submit" id="heroBtn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.854L0 24l6.343-1.499A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.07-1.415l-.362-.216-3.765.89.952-3.668-.237-.377A9.818 9.818 0 1112 21.818z"/></svg>
@@ -966,7 +1003,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
   <div class="proof-row">
     <div class="proof-item">
       <div class="proof-n">50<span class="unit">+</span></div>
-      <div class="proof-l">Clientes residenciais em 2026</div>
+      <div class="proof-l">Clientes residenciais satisfeitos</div>
     </div>
     <div class="proof-item">
       <div class="proof-n">5.0<span class="accent" style="margin-left:2px">★</span></div>
@@ -999,7 +1036,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
       <!-- PRIMARY: Residential Installation (70%) -->
       <div class="svc-card svc-primary fade-up">
         <div class="svc-img">
-          <img src="imagens/instalacao.jpg" alt="Instalação residencial de ar condicionado"/>
+          <img src="imagens/instalacao.jpg" alt="Instalação residencial de ar condicionado" loading="lazy"/>
           <span class="svc-tag svc-tag-primary">Especialidade · 70% do nosso trabalho</span>
         </div>
         <div class="svc-body">
@@ -1025,7 +1062,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
       <div class="svc-stack">
         <div class="svc-card svc-small fade-up">
           <div class="svc-img svc-img-sm">
-            <img src="imagens/reparacao.jpg" alt="Reparação de ar condicionado"/>
+            <img src="imagens/reparacao.jpg" alt="Reparação de ar condicionado" loading="lazy"/>
             <span class="svc-tag">Reparações</span>
           </div>
           <div class="svc-body">
@@ -1040,7 +1077,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 
         <div class="svc-card svc-small fade-up">
           <div class="svc-img svc-img-sm">
-            <img src="imagens/manutencao-img.webp" alt="Ar condicionado comercial"/>
+            <img src="imagens/manutencao-img.webp" alt="Ar condicionado comercial" loading="lazy"/>
             <span class="svc-tag">Comercial</span>
           </div>
           <div class="svc-body">
@@ -1116,19 +1153,19 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 
   <div class="car-outer">
     <div class="car-track" id="carTrack">
-      <div class="car-slide"><img src="imagens/trabalho-feitos.jpg"   alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/trabalho-feitos-1.jpg" alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos2.jpg"  alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos3.jpg"  alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos4.jpg"  alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos5.jpg"  alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos6.jpg"  alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos7.jpg"  alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos8.jpg"  alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos9.jpg"  alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos10.jpg" alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos11.jpg" alt="Trabalho AirTech"/></div>
-      <div class="car-slide"><img src="imagens/Trabalha ja feitos12.jpg" alt="Trabalho AirTech"/></div>
+      <div class="car-slide"><img src="imagens/trabalho-feitos.jpg"   alt="Instalação de ar condicionado split em habitação — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/trabalho-feitos-1.jpg" alt="Unidade exterior instalada em fachada — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos2.jpg"  alt="Trabalho de canalização e instalação de AC — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos3.jpg"  alt="Ar condicionado de tecto instalado em sala — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos4.jpg"  alt="Instalação de ar condicionado em escritório — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos5.jpg"  alt="Unidade exterior multi-split em terraço — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos6.jpg"  alt="Instalação residencial de AC split — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos7.jpg"  alt="Ar condicionado cassete instalado em tecto falso — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos8.jpg"  alt="Trabalho de manutenção de ar condicionado — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos9.jpg"  alt="Instalação de AC em moradia unifamiliar — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos10.jpg" alt="Unidade interior de ar condicionado — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos11.jpg" alt="Projecto de climatização concluído — AirTech" loading="lazy"/></div>
+      <div class="car-slide"><img src="imagens/Trabalha ja feitos12.jpg" alt="Trabalho AirTech" loading="lazy"/></div>
     </div>
   </div>
 
@@ -1151,10 +1188,10 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
     </div>
 
     <div class="reviews-grid fade-up">
-      <div class="review-card"><img src="imagens/review-1.png"  alt="Avaliação Google AirTech"/></div>
-      <div class="review-card"><img src="imagens/review-2.png"  alt="Avaliação Google AirTech"/></div>
-      <div class="review-card"><img src="imagens/review-3.png"  alt="Avaliação Google AirTech"/></div>
-      <div class="review-card"><img src="imagens/Review4.png"   alt="Avaliação Google AirTech"/></div>
+      <div class="review-card"><img src="imagens/review-1.png"  alt="Avaliação Google AirTech" loading="lazy"/></div>
+      <div class="review-card"><img src="imagens/review-2.png"  alt="Avaliação Google AirTech" loading="lazy"/></div>
+      <div class="review-card"><img src="imagens/review-3.png"  alt="Avaliação Google AirTech" loading="lazy"/></div>
+      <div class="review-card"><img src="imagens/Review4.png"   alt="Avaliação Google AirTech" loading="lazy"/></div>
     </div>
 
     <div style="text-align:center;margin-top:40px" class="fade-up">
@@ -1205,7 +1242,7 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
       </div>
 
       <div class="area-map fade-up">
-        <img src="imagens/localizacao.png" alt="Mapa de cobertura AirTech — Lisboa e área metropolitana" class="area-map-img"/>
+        <img src="imagens/localizacao.png" alt="Mapa de cobertura AirTech — Lisboa e área metropolitana" class="area-map-img" loading="lazy"/>
         <div class="area-map-address">
           <div class="ama-label">Base · Olivais</div>
           <div class="ama-val">Praça Mota Veiga, Lisboa</div>
@@ -1308,16 +1345,16 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 
     <div class="brands-row fade-up">
       <div class="brand-box">
-        <img src="imagens/daikin.png" alt="Daikin"/>
+        <img src="imagens/daikin.png" alt="Daikin" loading="lazy"/>
       </div>
       <div class="brand-box">
-        <img src="imagens/toyotomi.jpg" alt="Toyotomi"/>
+        <img src="imagens/toyotomi.jpg" alt="Toyotomi" loading="lazy"/>
       </div>
     </div>
 
     <div class="cert-section fade-up">
       <p class="cert-lbl">Certificação F-GAS</p>
-      <img src="imagens/certificado.png" alt="Certificado F-GAS AirTech" class="cert-img"/>
+      <img src="imagens/certificado.png" alt="Certificado F-GAS AirTech" class="cert-img" loading="lazy"/>
     </div>
   </div>
 </section>
@@ -1504,17 +1541,17 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
         <form id="mainForm" onsubmit="handleForm(event)">
           <div class="f-row">
             <div class="f-grp">
-              <label>Nome</label>
-              <input type="text" placeholder="O seu nome" required/>
+              <label for="m-nome">Nome</label>
+              <input id="m-nome" name="nome" type="text" placeholder="O seu nome" required/>
             </div>
             <div class="f-grp">
-              <label>Telefone</label>
-              <input type="tel" placeholder="9XX XXX XXX" required/>
+              <label for="m-tel">Telefone</label>
+              <input id="m-tel" name="tel" type="tel" placeholder="9XX XXX XXX" pattern="[0-9]{9}" title="Introduza 9 dígitos sem espaços" required/>
             </div>
           </div>
           <div class="f-grp">
-            <label>Tipo de serviço</label>
-            <select required>
+            <label for="m-servico">Tipo de serviço</label>
+            <select id="m-servico" name="servico" required>
               <option value="">Selecione o tipo de serviço</option>
               <option>Instalação residencial</option>
               <option>Reparação / avaria</option>
@@ -1524,8 +1561,8 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
             </select>
           </div>
           <div class="f-grp">
-            <label>Mensagem (opcional)</label>
-            <textarea placeholder="Descreva brevemente o que precisa..."></textarea>
+            <label for="m-msg">Mensagem (opcional)</label>
+            <textarea id="m-msg" name="mensagem" placeholder="Descreva brevemente o que precisa..."></textarea>
           </div>
           <button type="submit" class="btn btn-wa btn-block f-submit" id="mainBtn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.854L0 24l6.343-1.499A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.07-1.415l-.362-.216-3.765.89.952-3.668-.237-.377A9.818 9.818 0 1112 21.818z"/></svg>
@@ -1747,25 +1784,32 @@ document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 /* ═══ HERO FORM HANDLER ═══ */
 function handleHeroForm(e) {
   e.preventDefault();
+  const f = e.target;
+  const nome    = f.querySelector('[name=nome]').value.trim();
+  const tel     = f.querySelector('[name=tel]').value.trim();
+  const servico = f.querySelector('[name=servico]').value;
+  const cp      = f.querySelector('[name=cp]').value.trim();
+  const msg = encodeURIComponent(`Olá! Peço orçamento:\nNome: ${nome}\nTelefone: ${tel}\nServiço: ${servico}\nCódigo Postal: ${cp}`);
   const btn = document.getElementById('heroBtn');
-  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> A redirecionar...';
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pedido enviado!';
   btn.disabled = true;
-  setTimeout(() => {
-    window.open('https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado', '_blank');
-  }, 600);
+  setTimeout(() => { window.open('https://wa.me/351937058834?text=' + msg, '_blank'); }, 600);
 }
 
 function handleForm(e) {
   e.preventDefault();
+  const f = e.target;
+  const nome    = f.querySelector('[name=nome]').value.trim();
+  const tel     = f.querySelector('[name=tel]').value.trim();
+  const servico = f.querySelector('[name=servico]').value;
+  const mensagem = f.querySelector('[name=mensagem]') ? f.querySelector('[name=mensagem]').value.trim() : '';
+  const parts = [`Olá! Peço orçamento:\nNome: ${nome}\nTelefone: ${tel}\nServiço: ${servico}`];
+  if (mensagem) parts.push(`Mensagem: ${mensagem}`);
+  const msg = encodeURIComponent(parts.join('\n'));
   const btn = document.getElementById('mainBtn');
-  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> A redirecionar...';
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pedido enviado!';
   btn.disabled = true;
-  setTimeout(() => {
-    window.open(
-      'https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado',
-      '_blank'
-    );
-  }, 700);
+  setTimeout(() => { window.open('https://wa.me/351937058834?text=' + msg, '_blank'); }, 700);
 }
 
 /* ── Weather widget ── */
