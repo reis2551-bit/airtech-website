@@ -179,7 +179,7 @@ section  { padding:104px 0 }
 .hd-ham.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg) }
 
 .drawer {
-  position:fixed; top:0; left:0; right:0; bottom:0; background:#fff; z-index:999;
+  position:fixed; top:0; left:0; right:0; bottom:0; background:#fff; z-index:1002;
   transform:translateX(-100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
   display:flex; flex-direction:column; overflow-y:auto;
 }
@@ -188,24 +188,52 @@ section  { padding:104px 0 }
   display:flex; align-items:center; justify-content:space-between;
   padding:18px 22px; border-bottom:1px solid var(--border); flex-shrink:0;
 }
+.drawer-hd-right { display:flex; align-items:center; gap:8px }
+.drawer-hd-tel {
+  display:flex; align-items:center; gap:6px;
+  font-size:13px; font-weight:700; color:#fff; white-space:nowrap;
+  padding:8px 13px; border-radius:8px; background:#111; transition:background var(--t);
+}
+.drawer-hd-tel:hover { background:#000 }
 .drawer-close {
   width:38px; height:38px; border-radius:8px; display:flex; align-items:center;
   justify-content:center; color:var(--muted); cursor:pointer;
   transition:background var(--t),color var(--t); background:transparent; border:none; font-family:inherit;
 }
 .drawer-close:hover { background:var(--bg2); color:var(--navy) }
-.drawer-nav { padding:4px 22px; flex:1 }
+.drawer-nav { padding:4px 22px 0; flex-shrink:0 }
 .dr-lnk {
   display:flex; align-items:center; justify-content:space-between;
-  padding:16px 0; font-size:17px; font-weight:500; color:var(--navy);
-  border-bottom:1px solid var(--border-2); transition:color var(--t); letter-spacing:-.01em;
+  padding:12px 0; border-bottom:1px solid var(--border-2); transition:color var(--t);
 }
 .dr-lnk:last-child { border-bottom:none }
 .dr-lnk:hover { color:var(--blue) }
-.dr-lnk svg { color:var(--muted-2); transition:transform var(--t),color var(--t); flex-shrink:0 }
-.dr-lnk:hover svg { transform:translateX(3px); color:var(--blue) }
-.drawer-maint { padding:16px 22px 0 }
-.dr-ctas { padding:20px 22px; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:10px; flex-shrink:0 }
+.dr-lnk-left { display:flex; align-items:center; gap:13px }
+.dr-lnk-icon {
+  width:38px; height:38px; border-radius:11px; flex-shrink:0;
+  background:#F1F5F9; display:flex; align-items:center; justify-content:center;
+  color:var(--blue); transition:background var(--t);
+}
+.dr-lnk:hover .dr-lnk-icon { background:#DBEAFE }
+.dr-lnk-label { font-size:16px; font-weight:500; color:var(--navy); letter-spacing:-.01em; transition:color var(--t) }
+.dr-lnk:hover .dr-lnk-label { color:var(--blue) }
+.dr-lnk-chev { color:var(--muted-2); transition:transform var(--t),color var(--t); flex-shrink:0 }
+.dr-lnk:hover .dr-lnk-chev { transform:translateX(3px); color:var(--blue) }
+.drawer-trust {
+  margin:16px 22px; background:var(--bg2); border-radius:16px;
+  padding:18px 20px; display:flex; flex-direction:column; gap:15px; flex:1;
+}
+.dr-trust-item { display:flex; align-items:center; gap:14px }
+.dr-trust-icon {
+  width:38px; height:38px; border-radius:11px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+}
+.dr-trust-icon.yellow { background:#FEF3C7; color:#D97706 }
+.dr-trust-icon.blue   { background:#DBEAFE; color:#2563EB }
+.dr-trust-icon.green  { background:#DCFCE7; color:#059669 }
+.dr-trust-val { font-size:14px; font-weight:600; color:var(--navy); line-height:1.3 }
+.dr-trust-sub { font-size:12px; color:var(--muted); margin-top:2px }
+.dr-ctas { padding:16px 22px 24px; display:flex; flex-direction:column; gap:10px; flex-shrink:0 }
 
 /* ─── PAGE HERO ──────────────────────────── */
 .page-hero {
@@ -464,23 +492,86 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
 <!-- Mobile Drawer -->
 <div class="drawer" id="drawer">
   <div class="drawer-hd">
-    <a href="website.html#hero" class="hd-logo">
+    <a href="index.html" class="hd-logo">
       <div class="hd-gear logo-img" style="width:50px;height:32px" role="img" aria-label="AirTech logo"></div>
       <span class="hd-name">Air<em>Tech</em></span>
     </a>
-    <button class="drawer-close" onclick="toggleDrawer()" aria-label="Fechar menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="drawer-hd-right">
+      <a href="tel:+351937058834" class="drawer-hd-tel">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        937 058 834
+      </a>
+      <button class="drawer-close" onclick="toggleDrawer()" aria-label="Fechar menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
   </div>
+
   <nav class="drawer-nav">
-    <a href="servicos.html"   class="dr-lnk">Serviços <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
-    <a href="avaliacoes.html" class="dr-lnk">Avaliações <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
-    <a href="sobre.html" class="dr-lnk">Sobre nós <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
-    <a href="contactos.html" class="dr-lnk">Contacto <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+    <a href="servicos.html" class="dr-lnk">
+      <div class="dr-lnk-left">
+        <div class="dr-lnk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <span class="dr-lnk-label">Serviços</span>
+      </div>
+      <svg class="dr-lnk-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a href="avaliacoes.html" class="dr-lnk">
+      <div class="dr-lnk-left">
+        <div class="dr-lnk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <span class="dr-lnk-label">Avaliações</span>
+      </div>
+      <svg class="dr-lnk-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a href="manutencao.html" class="dr-lnk">
+      <div class="dr-lnk-left">
+        <div class="dr-lnk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <span class="dr-lnk-label">Manutenção</span>
+      </div>
+      <svg class="dr-lnk-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a href="sobre.html" class="dr-lnk">
+      <div class="dr-lnk-left">
+        <div class="dr-lnk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <span class="dr-lnk-label">Sobre nós</span>
+      </div>
+      <svg class="dr-lnk-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a href="contactos.html" class="dr-lnk">
+      <div class="dr-lnk-left">
+        <div class="dr-lnk-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <span class="dr-lnk-label">Contacto</span>
+      </div>
+      <svg class="dr-lnk-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
   </nav>
-  <div class="drawer-maint">
-    <a href="manutencao.html" class="btn btn-blue btn-block">Planos de Manutenção <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+
+  <div class="drawer-trust">
+    <div class="dr-trust-item">
+      <div class="dr-trust-icon yellow"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <div>
+        <div class="dr-trust-val">5.0 no Google</div>
+        <div class="dr-trust-sub">+50 avaliações verificadas</div>
+      </div>
+    </div>
+    <div class="dr-trust-item">
+      <div class="dr-trust-icon blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div>
+        <div class="dr-trust-val">08:00 – 20:00</div>
+        <div class="dr-trust-sub">Segunda a Sexta</div>
+      </div>
+    </div>
+    <div class="dr-trust-item">
+      <div class="dr-trust-icon green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div>
+        <div class="dr-trust-val">Disponível hoje</div>
+        <div class="dr-trust-sub">Lisboa e Zona Centro</div>
+      </div>
+    </div>
   </div>
+
   <div class="dr-ctas">
-    <a href="tel:+351937058834" class="btn btn-navy btn-block btn-lg">Ligar: 937 058 834</a>
+    <a href="tel:+351937058834" class="btn btn-navy btn-block btn-lg">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Ligar: 937 058 834
+    </a>
     <a href="https://wa.me/351937058834?text=Ol%C3%A1%2C+preciso+de+or%C3%A7amento+para+ar+condicionado"
        target="_blank" class="btn btn-wa btn-block btn-lg">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.854L0 24l6.343-1.499A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.07-1.415l-.362-.216-3.765.89.952-3.668-.237-.377A9.818 9.818 0 1112 21.818z"/></svg>
