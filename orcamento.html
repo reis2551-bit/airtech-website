@@ -556,15 +556,6 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
                   <option>Outra questão</option>
                 </select>
               </div>
-              <div class="f-grp">
-                <label for="o-urgencia">Urgência</label>
-                <select id="o-urgencia" name="urgencia">
-                  <option value="">Selecione...</option>
-                  <option>Normal (1–2 semanas)</option>
-                  <option>Esta semana</option>
-                  <option>Hoje ou amanhã</option>
-                </select>
-              </div>
             </div>
           </div>
 
@@ -576,10 +567,12 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
                 <label for="o-tipo">Tipo de espaço</label>
                 <select id="o-tipo" name="tipo_espaco">
                   <option value="">Selecione...</option>
+                  <option>Apartamento T1</option>
+                  <option>Apartamento T2</option>
+                  <option>Apartamento T3 ou maior</option>
+                  <option>Moradia</option>
                   <option>Quarto</option>
-                  <option>Sala</option>
-                  <option>Cozinha</option>
-                  <option>Escritório</option>
+                  <option>Escritório / Consultório</option>
                   <option>Loja / Comércio</option>
                   <option>Outro</option>
                 </select>
@@ -829,7 +822,6 @@ function handleOrcForm(e) {
   const email    = get('email');
   const cp       = get('cp');
   const servico  = get('servico');
-  const urgencia = get('urgencia');
   const tipo     = get('tipo_espaco');
   const area     = get('area');
   const unidades = get('unidades');
@@ -852,7 +844,6 @@ function handleOrcForm(e) {
     'Olá! O meu nome é ' + nome + ' e estou a contactar através do formulário do vosso site.',
     '',
     'Gostaria de um orçamento para ' + (servico || 'ar condicionado') + '.',
-    urgencia ? 'Urgência: ' + urgencia + '.' : null,
     '',
     '*Contacto*',
     'Telefone: ' + tel,
