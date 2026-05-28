@@ -276,6 +276,42 @@ section  { padding:104px 0 }
 .car-dot { width:6px; height:6px; border-radius:50%; background:var(--border); cursor:pointer; transition:all var(--t) }
 .car-dot.on { background:var(--navy); width:22px; border-radius:3px }
 
+/* ─── FACEBOOK REVIEW CARDS ─────────────── */
+.fb-section-label {
+  display:flex; align-items:center; gap:12px; margin-bottom:36px;
+  font-size:13px; font-weight:600; color:var(--muted); letter-spacing:.03em; text-transform:uppercase;
+}
+.fb-section-label::before,
+.fb-section-label::after { content:''; flex:1; height:1px; background:var(--border) }
+.fb-grid {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:20px;
+}
+.fb-card {
+  background:#fff; border:1px solid var(--border); border-radius:var(--r-lg);
+  padding:24px 26px; box-shadow:var(--shadow-sm);
+  transition:border-color var(--t), box-shadow var(--t);
+}
+.fb-card:hover { border-color:#c5cfe0; box-shadow:var(--shadow) }
+.fb-card-top { display:flex; align-items:center; gap:12px; margin-bottom:16px }
+.fb-avatar {
+  width:42px; height:42px; border-radius:50%; background:var(--navy);
+  color:#fff; font-weight:700; font-size:15px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; letter-spacing:-.01em;
+}
+.fb-name { font-weight:600; font-size:15px; color:var(--navy); letter-spacing:-.01em }
+.fb-meta { font-size:12px; color:var(--muted); margin-top:2px }
+.fb-badge {
+  margin-left:auto; flex-shrink:0;
+  background:#1877F2; color:#fff; border-radius:7px;
+  width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+}
+.fb-stars { color:#F59E0B; font-size:14px; letter-spacing:1px; margin-bottom:10px }
+.fb-text { font-size:14px; line-height:1.7; color:var(--text2) }
+
+@media (max-width:640px) {
+  .fb-grid { grid-template-columns:1fr }
+}
+
 /* ─── FINAL CTA ──────────────────────────── */
 #cta-final {
   background:var(--navy); padding:112px 0; text-align:center; position:relative; overflow:hidden;
@@ -528,6 +564,66 @@ footer { background:#050B16; padding:72px 0 0; color:rgba(255,255,255,.6) }
       <div class="review-card"><img src="imagens/review-2.png"  alt="Avaliação Google AirTech" loading="lazy"/></div>
       <div class="review-card"><img src="imagens/review-3.png"  alt="Avaliação Google AirTech" loading="lazy"/></div>
       <div class="review-card"><img src="imagens/Review4.png"   alt="Avaliação Google AirTech" loading="lazy"/></div>
+    </div>
+
+    <!-- Facebook Reviews -->
+    <div style="margin-top:64px" class="fade-up">
+      <div class="fb-section-label">Avaliações Facebook</div>
+      <div class="fb-grid">
+
+        <div class="fb-card">
+          <div class="fb-card-top">
+            <div class="fb-avatar">AS</div>
+            <div>
+              <div class="fb-name">Andre Sabino</div>
+              <div class="fb-meta">recomenda a AirTech · há 33 semanas</div>
+            </div>
+            <div class="fb-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></div>
+          </div>
+          <div class="fb-stars">★★★★★</div>
+          <p class="fb-text">"Após solicitar três orçamentos a diferentes empresas, encontrei finalmente nesta a solução para todas as minhas necessidades."</p>
+        </div>
+
+        <div class="fb-card">
+          <div class="fb-card-top">
+            <div class="fb-avatar">DP</div>
+            <div>
+              <div class="fb-name">Daniela Piconez Dos Santos</div>
+              <div class="fb-meta">recomenda a AirTech · há 35 semanas</div>
+            </div>
+            <div class="fb-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></div>
+          </div>
+          <div class="fb-stars">★★★★★</div>
+          <p class="fb-text">"Recomendo vivamente, simpáticos, profissionais e fazem um bom serviço! Impecáveis, 5 estrelas."</p>
+        </div>
+
+        <div class="fb-card">
+          <div class="fb-card-top">
+            <div class="fb-avatar">LC</div>
+            <div>
+              <div class="fb-name">Lilia Chemetova</div>
+              <div class="fb-meta">recomenda a AirTech · agosto 2025</div>
+            </div>
+            <div class="fb-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></div>
+          </div>
+          <div class="fb-stars">★★★★★</div>
+          <p class="fb-text">"Adorei o serviço, muito rápido e impecável! A instalação ficou muito bonita e sem calhas visíveis no interior do apartamento. Recomendo!"</p>
+        </div>
+
+        <div class="fb-card">
+          <div class="fb-card-top">
+            <div class="fb-avatar">AL</div>
+            <div>
+              <div class="fb-name">Andreia Luna</div>
+              <div class="fb-meta">recomenda a AirTech · julho 2025</div>
+            </div>
+            <div class="fb-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></div>
+          </div>
+          <div class="fb-stars">★★★★★</div>
+          <p class="fb-text">"Rápidos na resposta e super profissionais. Estou muito satisfeita com o serviço prestado no meu espaço. Muito obrigada!"</p>
+        </div>
+
+      </div>
     </div>
 
     <div style="text-align:center;margin-top:40px" class="fade-up">
