@@ -871,14 +871,12 @@ function handleOrcForm(e) {
     'Fico a aguardar notícias. Obrigado!',
   ].filter(l => l !== null).join('\n');
 
+  window.open('https://wa.me/351937058834?text=' + encodeURIComponent(linhas), '_blank');
+
   const btn = document.getElementById('orcBtn');
   btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pedido enviado!';
   btn.disabled = true;
   btn.style.background = 'var(--green)';
-
-  setTimeout(() => {
-    window.open('https://wa.me/351937058834?text=' + encodeURIComponent(linhas), '_blank');
-  }, 600);
 }
 </script>
 </body>

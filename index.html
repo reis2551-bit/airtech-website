@@ -1953,10 +1953,10 @@ function handleHeroForm(e) {
   const servico = f.querySelector('[name=servico]').value;
   const cp      = f.querySelector('[name=cp]').value.trim();
   const msg = encodeURIComponent(`Olá! O meu nome é ${nome} e estou a contactar através do vosso site.\n\nGostaria de um orçamento para ${servico}.\n\nTelefone: ${tel}\nCódigo postal: ${cp}\n\nFico a aguardar notícias. Obrigado!`);
+  window.open('https://wa.me/351937058834?text=' + msg, '_blank');
   const btn = document.getElementById('heroBtn');
   btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pedido enviado!';
   btn.disabled = true;
-  setTimeout(() => { window.open('https://wa.me/351937058834?text=' + msg, '_blank'); }, 600);
 }
 
 function handleForm(e) {
@@ -1969,10 +1969,10 @@ function handleForm(e) {
   const parts = [`Olá! Peço orçamento:\nNome: ${nome}\nTelefone: ${tel}\nServiço: ${servico}`];
   if (mensagem) parts.push(`Mensagem: ${mensagem}`);
   const msg = encodeURIComponent(parts.join('\n'));
+  window.open('https://wa.me/351937058834?text=' + msg, '_blank');
   const btn = document.getElementById('mainBtn');
   btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pedido enviado!';
   btn.disabled = true;
-  setTimeout(() => { window.open('https://wa.me/351937058834?text=' + msg, '_blank'); }, 700);
 }
 
 /* ── Weather widget ── */
